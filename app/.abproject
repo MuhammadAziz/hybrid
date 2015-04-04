@@ -1,0 +1,85 @@
+{
+	"ProjectName": "MediRecords_Mobile",
+	"projectVersion": 1,
+	"AppIdentifier": "com.asterx.mrapp",
+	"DisplayName": "MediRecords",
+	"Author": "AsteRx",
+	"Description": "MediRecords App",
+	"BundleVersion": "1.0",
+	"Framework": "Cordova",
+	"FrameworkVersion": "3.5.0",
+	"ProjectTypeGuids": "{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}",
+	"CorePlugins": [
+		"org.apache.cordova.battery-status",
+		"org.apache.cordova.camera",
+		"org.apache.cordova.console",
+		"org.apache.cordova.contacts",
+		"org.apache.cordova.device",
+		"org.apache.cordova.device-motion",
+		"org.apache.cordova.device-orientation",
+		"org.apache.cordova.dialogs",
+		"org.apache.cordova.file",
+		"org.apache.cordova.file-transfer",
+		"org.apache.cordova.geolocation",
+		"org.apache.cordova.globalization",
+		"org.apache.cordova.inappbrowser",
+		"org.apache.cordova.media",
+		"org.apache.cordova.media-capture",
+		"org.apache.cordova.network-information",
+		"org.apache.cordova.splashscreen",
+		"org.apache.cordova.statusbar",
+		"org.apache.cordova.vibration"
+	],
+	"AndroidPermissions": [
+		"android.permission.CAMERA",
+		"android.permission.VIBRATE",
+		"android.permission.ACCESS_COARSE_LOCATION",
+		"android.permission.ACCESS_FINE_LOCATION",
+		"android.permission.ACCESS_LOCATION_EXTRA_COMMANDS",
+		"android.permission.READ_PHONE_STATE",
+		"android.permission.INTERNET",
+		"android.permission.RECEIVE_SMS",
+		"android.permission.RECORD_AUDIO",
+		"android.permission.MODIFY_AUDIO_SETTINGS",
+		"android.permission.READ_CONTACTS",
+		"android.permission.WRITE_CONTACTS",
+		"android.permission.WRITE_EXTERNAL_STORAGE",
+		"android.permission.ACCESS_NETWORK_STATE",
+		"android.permission.ACCOUNT_MANAGER",
+		"android.permission.GET_ACCOUNTS",
+		"android.permission.MANAGE_ACCOUNTS",
+		"android.permission.BROADCAST_STICKY"
+	],
+	"DeviceOrientations": [
+		"Portrait",
+		"Landscape"
+	],
+	"AndroidHardwareAcceleration": "false",
+	"AndroidVersionCode": "7",
+	"iOSStatusBarStyle": "Default",
+	"iOSDeviceFamily": [
+		"1",
+		"2"
+	],
+	"iOSBackgroundMode": [],
+	"WP8TileTitle": "MediRecords",
+	"WP8Publisher": "AsteRx",
+	"WP8WindowsPublisherName" : "CN=AsteRx",
+	"WP8PackageIdentityName" : "com.asterx.mrapp",
+	"WP8Capabilities": [],
+	"WP8Requirements": [],
+	"WP8SupportedResolutions": [
+		"ID_RESOLUTION_WVGA",
+		"ID_RESOLUTION_WXGA",
+		"ID_RESOLUTION_HD720P"
+	],
+	"ProjectGuid": "{0f3583ed-e428-464e-8e5b-7b5a108e65fa}",
+	"WP8PublisherID": "{d9e033ae-5264-4a8b-824a-5014eb0abde2}",
+	"WP8ProductID": "{a95a0ad9-9ad2-4d08-ba24-1d7c4bde9bc4}",
+        "CordovaPluginVariables": {
+            "plugin.google.maps": {
+              "API_KEY_FOR_ANDROID": "AIzaSyAqQm9q-pdTDgyu0W8yY3wedV14Jh7biV4",
+              "API_KEY_FOR_IOS": "AIzaSyBLDMjIyJ574W6bx-wghT8OF2Mb_8Henxc"
+            }
+          }
+}

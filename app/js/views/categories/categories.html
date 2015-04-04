@@ -1,0 +1,9 @@
+<div data-role="drawer" id="view-categories" style="width: 270px" data-model="App.model.categories">
+    <div class="km-group-title">Categories</div>
+    <ul data-role="listview" data-bind="source: categoriesDatasource" data-template="view-categories-template"></ul>
+    <a data-role="button" data-icon="compose" class="full" data-rel="modalview" href="#newCategory">New</a>
+</div>
+
+<script type="text/x-kendo-template" id="view-categories-template">
+    <a href="view-demo?category=#: name #">#: name #</a>
+</script>

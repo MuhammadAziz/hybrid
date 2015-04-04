@@ -1,0 +1,17 @@
+<div data-role="view" id="view-gallery" class="content" data-model="App.model.gallery" data-init="App.events.gallery.onInit" style="display: none;">
+    <div class="row action-area ch50">
+        <!--
+        <button class="button dh" data-bind="click: getPhoto">Take Photo</button>
+        <button class="button dh" data-bind="click: getPhotoEdit">Take Editable Photo (iOS only)</button>
+        -->
+        <button class="col-xs-6 button dh" data-bind="click: getPhotoLibrary">Select from Photo Library</button>
+        <button class="col-xs-6 button dh" data-bind="click: getPhotoAlbum">Select from Photo Album</button>
+    </div>
+    <div class="row result-area ch50">
+        <div class="col-xs-12 results">
+            <div class="desc">Note: Photo Library and Photo Album display the same photo album on Android.</div>
+            <img style="display:none;margin:5px auto; width:100%; height:auto;" id="view-gallery-result" src="" />
+        </div>
+        <div class="separator"></div>
+    </div>
+</div>

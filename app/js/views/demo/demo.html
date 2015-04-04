@@ -1,0 +1,15 @@
+<div data-role="view" id="view-demo" data-model="App.model.demo" data-init="App.events.demo.onInit" data-after-show="App.events.demo.onAfterShow" style="display: none;">
+    <header data-role="header">
+        <div data-role="navbar">
+            <a data-role="button" data-rel="drawer" href="#view-categories" data-icon="drawer-button" data-align="left"></a>
+            <span data-role="view-title"></span>
+            <a data-role="button" data-rel="modalview" href="#view-new-demo" data-align="right" data-icon="compose"></a>
+        </div>
+        <div class="view-demo-content"></div>
+    </header>
+    <ul data-role="listview" data-bind="source: todoDatasource" data-template="view-demo-template"></ul>
+</div>
+
+<script type="text/x-kendo-template" id="view-demo-template">
+   <a href="\#view-#: target #">#: title #</a>
+</script>
