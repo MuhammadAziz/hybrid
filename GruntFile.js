@@ -20,7 +20,8 @@ module.exports = function (grunt) {
 						files: [
 							{ cwd: source, src: 'css/**/*.css', dest: debug },
 							{ cwd: source, src: 'js/**/*.js', dest: debug },
-							{ cwd: source, src: '**/*.html', dest: debug }
+							{ cwd: source, src: '**/*.html', dest: debug },
+							{ cwd: source, src: '**/*.jpg', dest: debug }
 						]
 					}
                 },

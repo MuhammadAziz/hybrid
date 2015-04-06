@@ -1,0 +1,24 @@
+<div id="view-pin" class="bg-blur-container" data-role="view" data-stretch="true" data-model="App.model.pin" data-init="App.model.pin.onInit" data-show="App.model.pin.onShow" data-after-show="App.model.pin.onAfterShow" style="display: none;">
+    <div class="bg-blur splash-bg"></div>
+    <div style="height: 100%" class="mr-full-width">
+        <div class="row">
+            <div class="col-xs-3">
+                <input type="password" id="view-pin-code-1" class="k-input mr-input" maxlength="1" data-bind="value: formData.passCode1, events: {change: dataChanged}"/>
+            </div>
+            <div class="col-xs-3">
+                <input type="password" id="view-pin-code-2" class="k-input mr-input" maxlength="1" data-bind="value: formData.passCode2, events: {change: dataChanged}"/>
+            </div>
+            <div class="col-xs-3">
+                <input type="password" id="view-pin-code-3" class="k-input mr-input" maxlength="1" data-bind="value: formData.passCode3, events: {change: dataChanged}"/>
+            </div>
+            <div class="col-xs-3">
+                <input type="password" id="view-pin-code-4" class="k-input mr-input" maxlength="1" data-bind="value: formData.passCode4, events: {change: dataChanged}"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3 col-xs-push-9 text-right">
+                <a data-role="button" class="btn" data-bind="click: skip">Skip</a>
+            </div>
+        </div>
+    </div>
+</div>

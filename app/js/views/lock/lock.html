@@ -1,0 +1,15 @@
+<div id="view-lock" class="bg-blur-container" data-role="view" data-stretch="true" data-model="App.model.lock" data-show="App.model.lock.onAfterShow" style="display: none;">
+    <div class="bg-blur splash-bg"></div>
+    <div style="height: 100%" class="mr-full-width">
+        <div class="row">
+            <div class="col-xs-12">
+                <input type="password" class="k-input mr-input" placeholder="Enter PIN to unlock" data-bind="value: formData.passCode"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-7 col-xs-push-3 text-center">
+                <a data-role="button" class="btn mr-button mr-green mr-shadow mr-height-60" data-bind="click: unlock">Unlock</a>
+            </div>
+        </div>
+    </div>
+</div>

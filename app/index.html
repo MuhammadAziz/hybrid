@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="js/libs/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="js/libs/bootstrap/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/medirecords.css">
+        <link rel="stylesheet" href="css/demo-tabstrip.css">
     </head>
     <body>
         <script src="cordova.js"></script>
@@ -13,9 +14,29 @@
         <script src="bower_components/jquery-tiny-pubsub/tiny-pubsub.js"></script>
         <script src="kendo/js/kendo.mobile.min.js"></script>
         <script src="js/libs/async.js"></script>
+        <script src="js/libs/jquery.cookie.js"></script>
         <script src="js/libs/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/libs/jquery.fittext.js"></script>
         <script src="bower_components/requirejs/require.js" data-main="js/main.js"></script>
+        <div data-role="layout" data-id="home-layout">
+            <header data-role="header">
+                <div data-role="navbar">
+                    <!--<a class="nav-button" data-align="left" data-role="backbutton">Back</a>-->
+                    <span data-role="view-title"></span>
+                    <a data-align="right" data-role="button" class="nav-button" href="#/">Index</a>
+                </div>
+            </header>
 
+            <p>TabStrip</p>
+
+            <div data-role="footer">
+                <div data-role="tabstrip">
+                    <a href="#tabstrip-profile" data-icon="contacts">Profile
+                    </a><a href="#tabstrip-sales" data-icon="history">Sales
+                    </a><a href="#tabstrip-rating" data-icon="favorites">Rating
+                    </a><a href="#tabstrip-settings" data-icon="settings">Settings</a>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

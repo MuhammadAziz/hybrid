@@ -1,27 +1,22 @@
 define([
-//	'views/demo/demo',
-//	'views/categories/categories',
-//	'views/newDemo/newDemo',
-//	'views/newCategory/newCategory',
-//	'views/demo-details/camera/camera',
-//	'views/demo-details/gallery/gallery',
-//	'views/demo-details/barcode/barcode',
-//	'views/demo-details/geolocation/geolocation',
-//	'views/demo-details/upload/upload',
-//	'views/demo-details/email/email',
-//	'views/demo-details/sms/sms',
-//	'views/demo-details/calendar/calendar',
-//	'views/demo-details/contacts/contacts',
-//	'views/demo-details/notification/notification' //notifications
-    'views/intro/intro'
-], function () {
-    debugger;
+	'utils/utils',
+    'views/home/home',
+    'views/setup/intro/intro',
+    'views/setup/token/token',
+    'views/setup/pin/pin',
+    'views/lock/lock'
+], function (utils) {
     // create a global container object
     var App = window.App = window.App || {};
 
     App.init = function () {
         // intialize the application
-        App.mobile = new kendo.mobile.Application(document.body, {skin: 'flat'});
+        App.mobile = new kendo.mobile.Application(document.body, {skin: 'flat', initial: "#view-intro", transition: "slide", browserHistory: false});
+		document.addEventListener("pause", function(e){
+			if(!utils.isSkipPasscode){
+				utils.updatePasscodeCookie();
+			}
+		});
     };
 
     return App;
