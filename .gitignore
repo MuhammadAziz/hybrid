@@ -7,7 +7,6 @@
 *.suo
 **/*.apk
 /node_modules/
-/debug/
 /live/
 /app/.ab
 /dist

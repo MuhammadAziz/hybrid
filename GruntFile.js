@@ -20,7 +20,6 @@ module.exports = function (grunt) {
 						files: [
 							{ cwd: source, src: 'css/**/*.css', dest: debug },
 							{ cwd: source, src: 'js/**/*.js', dest: debug },
-							{ cwd: source, src: 'img/**/*.jpg', dest: debug },
 							{ cwd: source, src: '**/*.html', dest: debug }
 						]
 					}
@@ -47,6 +46,7 @@ module.exports = function (grunt) {
 						}
 					},
 					ios: {
+						command: "appbuilder --path app emulate ios --device iPhone-5"
 					},
 					browse: {
 						command: "start http://localhost:" + port
