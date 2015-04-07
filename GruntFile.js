@@ -60,29 +60,8 @@ module.exports = function (grunt) {
 				].join("&&")
 			},
 			reload_ios: {
-				command: "ios-sim launch " + debug_ios
+				command: "ios-sim launch " + debug_ios + " --devicetypeid com.apple.CoreSimulator.SimDeviceType.iPhone-5"
 			},
-//            android: {
-//                command: function () {
-//                    var result = [];
-//                    //result.push("adb shell pm clear " + packages);
-//                    result.push("adb install -r " + target);
-//                    result.push("adb shell am start -a android.intent.action.MAIN -n " + packages + "/.TelerikCallbackActivity");
-//                    return result.join("&&");
-//                }
-//            },
-//            ios: {
-//                command: "appbuilder --path app emulate ios --device iPhone-5"
-//            },
-			//Push file directly to /data/data (rooted device only) and restart app
-//            push: {
-//                command: [
-//                    "adb root",
-//                    "adb push " + debug + " /data/data/" + packages + "/files/" + androidTarget,
-//                    "adb shell am force-stop " + packages,
-//                    "adb shell am start -a android.intent.action.MAIN -n " + packages + "/.TelerikCallbackActivity"
-//                ].join("&&")
-//            },
 			clean_live: {
 				command: "rm -R live/*"
 			},
@@ -306,7 +285,7 @@ module.exports = function (grunt) {
 	grunt.registerTask("run:android", ["lint", "sync:android", "reload:android"]);
 	grunt.registerTask("run:ios", ["lint", "copy:ios", "reload:ios"]);
 	grunt.registerTask("build", ["lint", "shell:clean_dist", "copy"]);
-	grunt.registerTask("android", ["build", "appbuilder:android", "install:android"]);
+	grunt.registerTask("android", ["build", "appbuilder:android", "shell:install_android"]);
 	grunt.registerTask("ios", ["build", "appbuilder:ios"]);
 	grunt.registerTask("install:android", ["android"]);
 	grunt.registerTask("install:ios", ["shell:install_ios"]);
