@@ -16,7 +16,11 @@ define([
 			$passCode.focus();
 		},
 		onBeforeShow:function(e) {
-			isSaved && e.preventDefault();
+			if(isSaved){
+				e.preventDefault();
+			}else{
+				
+			}
 		},
 		formData: {
 			passCode1: null,

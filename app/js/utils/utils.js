@@ -40,6 +40,15 @@ define(function () {
 		},
 		skipPasscode:function(skip){
 			this._skipPasscode = skip;
+		},
+		isFirstLaunch: function(){
+			return false;
+		},
+		isLoggedOut: function(){
+			return false;
+		},
+		isInvalidPasscode: function(){
+			return true;
 		}
 	});
 	return new utils();
