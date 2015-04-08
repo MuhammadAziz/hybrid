@@ -1,4 +1,8 @@
-<div id="view-agreement" class="bg-blur-container" data-role="view" data-stretch="true" data-model="App.model.agreement" style="display: none;">
+<div id="view-agreement" class="bg-blur-container" 
+     data-role="view" 
+     data-stretch="true" 
+     data-before-hide="App.model.agreement.onBeforeHide"
+     data-model="App.model.agreement" style="display: none;">
     <div class="bg-blur splash-bg"></div>
     <div style="height: 100vh" class="mr-full-width mr-content">
         <div class="row">
@@ -8,7 +12,7 @@
         </div>
         <div class="row">
             <div class="col-xs-7 col-xs-push-3 text-center">
-                <a data-role="button" class="btn mr-button mr-green mr-shadow mr-height-60">Submit Token</a>
+                <a data-role="button" class="btn mr-button mr-green mr-shadow mr-height-60" data-bind="click: next">Agree</a>
             </div>
         </div>
     </div>

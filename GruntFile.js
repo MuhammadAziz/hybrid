@@ -60,7 +60,7 @@ module.exports = function (grunt) {
 				].join("&&")
 			},
 			reload_ios: {
-				command: "ios-sim launch " + debug_ios + " --devicetypeid com.apple.CoreSimulator.SimDeviceType.iPhone-5"
+				command: "ios-sim launch " + debug_ios + " --devicetypeid com.apple.CoreSimulator.SimDeviceType.iPhone-4s"
 			},
 			clean_live: {
 				command: "rm -R live/*"
@@ -92,6 +92,7 @@ module.exports = function (grunt) {
 							"bower_components/**",
 							"js/**",
 							"img/**",
+							"**/*.html",
 							'!**/*.apk',
 							"!app/App_Resources/**",
 							"!app/Plugins/**",
@@ -133,7 +134,7 @@ module.exports = function (grunt) {
 			options: {
 				jshintrc: true
 			},
-			all: ["*.js", "app/js/*.js"]
+			all: ["*.js", "app/js/**/*.js", "!app/js/libs/**/*.js"]
 		},
 		// Run JSCS using the .jscsrc file for config
 		jscs: {

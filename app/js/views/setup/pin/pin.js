@@ -1,9 +1,10 @@
 define([
 	'text!views/setup/pin/pin.html',
 	'views/baseview',
-	'utils/utils'
-], function (html, View, utils) {
-	var $passCode = null, $confirmPasscode = null, isSaved = false;
+	'utils/passcode-helper',
+	'utils/settings'
+], function (html, View, passcodeHelper, settings) {
+	var $passCode = null, $confirmPasscode = null;
 	var model = kendo.observable({
 		isConfirm: false,
 		onInit: function (e) {
@@ -16,10 +17,10 @@ define([
 			$passCode.focus();
 		},
 		onBeforeShow:function(e) {
-			if(isSaved){
+			if(passcodeHelper.isExist()){
 				e.preventDefault();
 			}else{
-				
+				this.model.reset();
 			}
 		},
 		formData: {
@@ -87,19 +88,26 @@ define([
 			return false;
 		},
 		_save: function (data) {
-			utils.savePasscode(data);
-			App.mobile.navigate("#view-home");
-			isSaved = true;
+			passcodeHelper.savePasscode(data);
+			passcodeHelper.togglePasscode(true);
+			if(settings.isFirstLaunch()){
+				App.mobile.navigate("#view-agreement");
+			}else{
+				App.mobile.navigate("#:back");
+			}
 		},
 		reset: function(){
 			this._resetConfirmPasscode();
 			this._resetPasscode();
-			$passCode.focus();
+			$passCode && $passCode.focus();
 		},
 		skip: function () {
-			utils.skipPasscode(true);
-			App.mobile.navigate("#view-home");
-			isSaved = true;
+			passcodeHelper.togglePasscode(false);
+			if(settings.isFirstLaunch()){
+				App.mobile.navigate("#view-agreement");
+			}else{
+				App.mobile.navigate("#:back");
+			}
 		}
 	});
 	new View('pin', html, model);

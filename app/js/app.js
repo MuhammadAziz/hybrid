@@ -3,6 +3,7 @@ define([
     'views/setup/intro/intro',
     'views/setup/token/token',
     'views/setup/pin/pin',
+    'views/setup/agreement/agreement',
     'views/lock/lock',
     'views/home/home'
 ], function (listeners) {

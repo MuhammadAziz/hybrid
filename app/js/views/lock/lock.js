@@ -1,7 +1,8 @@
 define([
 	'text!views/lock/lock.html',
-	'views/baseview'
-], function (html, View) {
+	'views/baseview',
+	'utils/passcode-helper'
+], function (html, View, passcode) {
     var model = kendo.observable({
         onInit: function(e){
             
@@ -17,20 +18,18 @@ define([
 		},
         unlock: function(){
             if(this.validate()){
+				passcode.updatePasscodeCookie();
 				App.mobile.navigate("#view-home");
 			}else{
 				alert("please enter correct passcode");
 			}
         },
 		validate: function(){
-			var code = this.formData.passCode;
-			var cookie = $.cookie('passcode');
-			if(code){
-				if(cookie === code){
-					return true;
-				}
+			if(this.formData.passCode){
+				return passcode.validate(this.formData.passCode);
+			}else{
+				return false;
 			}
-			return false;
 		}
     });
     new View('lock', html, model);

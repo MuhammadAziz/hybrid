@@ -1,7 +1,8 @@
 define([
 	'text!views/setup/agreement/agreement.html',
-	'views/baseview'
-], function (html, View) {
+	'views/baseview',
+	'utils/settings'
+], function (html, View, settings) {
     var model = kendo.observable({
         onInit: function(e){
             
@@ -9,9 +10,16 @@ define([
         onAfterShow: function(e){
             
         },
-        click: function(){
-            alert("test");
-        }
+		onBeforeHide: function(){
+			
+		},
+        next: function(){
+			settings.disableFirstLaunch();
+            App.mobile.navigate("#view-home");
+        },
+		back: function(){
+			
+		}
     });
     new View('agreement', html, model);
     return model;
