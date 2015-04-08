@@ -3,6 +3,7 @@ define([
 	'views/baseview',
 	'utils/passcode-helper'
 ], function (html, View, passcode) {
+    var notif = navigator.notification;
     var model = kendo.observable({
         onInit: function(e){
             
@@ -21,7 +22,7 @@ define([
 				passcode.updatePasscodeCookie();
 				App.mobile.navigate("#view-home");
 			}else{
-				alert("please enter correct passcode");
+				notif.alert("Please enter correct pin", null, "Invalid PIN", "Ok");
 			}
         },
 		validate: function(){

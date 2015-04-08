@@ -4,7 +4,7 @@ define([
 	'utils/passcode-helper',
 	'utils/settings'
 ], function (html, View, passcodeHelper, settings) {
-	var $passCode = null, $confirmPasscode = null;
+	var $passCode = null, $confirmPasscode = null, notif = navigator.notification;;
 	var model = kendo.observable({
 		isConfirm: false,
 		onInit: function (e) {
@@ -54,7 +54,7 @@ define([
 					passCodes.push(confirm.passCode4);
 					that._save(passCodes.join(''));
 				}else{
-					alert("Passcode doesn't match");
+					notif.alert("Passcode doesn't match", null, "Invalid PIN");
 					that._resetConfirmPasscode();
 					$confirmPasscode.focus();
 				}

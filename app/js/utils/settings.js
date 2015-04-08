@@ -16,7 +16,6 @@ define(["utils/base-utils"], function(BaseUtils){
 			this.saveToStorage(SETTINGS_KEY, {STATE_PASSCODE: state});
 		},
 		isFirstLaunch: function () {
-			debugger;
 			var settings = this.getFromStorage(SETTINGS_KEY);
 			return settings && typeof settings.FIRST_LAUNCH !== 'undefined' ? settings.FIRST_LAUNCH : true;
 		},
@@ -29,7 +28,6 @@ define(["utils/base-utils"], function(BaseUtils){
 			return settings && typeof settings.LOGGED_IN !== 'undefined' ? settings.LOGGED_IN : false;
 		},
 		setDefault: function(){
-			debugger;
 			this.saveToStorage(SETTINGS_KEY, settings_default);
 		}
 	});
