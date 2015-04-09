@@ -1,0 +1,19 @@
+&.km-on-ios {
+    [data-role="view"] > div{
+        margin-top: 20px;
+    }
+    .bg-blur{
+        margin-top: -20px;
+    }
+}
+.bg-blur-container .km-content{
+    background: transparent;
+    display: block;
+}
+.bg-blur-container .km-pages li{
+    width: 2em;
+}
+
+.mr-full-width * input {
+    width: 100%;
+}

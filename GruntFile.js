@@ -2,44 +2,72 @@ module.exports = function (grunt) {
 	"use strict";
 	var packages = "com.asterx.mrapp";
 	var source = "app/";
+	var buildDestination = "dist";
+	var releaseDir = "release";
 	var simulate = "simulate/content";
 	var debug = "live";
-	var debug_ios = "app/.ab/emulatorfiles/Cordova370.app";
+	var debug_ios = buildDestination + "/.ab/emulatorfiles/Cordova370.app";
 	var target = "debug/app.apk";
 	var androidTarget = "12590FAA-5EDD-4B12-856D-F52A0A1599F2/";
+	var iPhone = "iPhone-4s";
+	var releaseDate = (new Date()).toISOString().slice(0,10);
 	grunt.initConfig({
 		pkg: grunt.file.readJSON("package.json"),
 		//Run synchronize folder 
 		sync: {
 			android: {
+				verbose: true,
 				files: [
-					{cwd: source, src: 'css/**/*.css', dest: debug},
-					{cwd: source, src: 'js/**/*.js', dest: debug},
-					{cwd: source, src: '**/*.html', dest: debug},
-					{cwd: source, src: '**/*.jpg', dest: debug}
+					{
+						cwd: source,
+						src: [
+							"css/**/*.css",
+							'js/**/*.js',
+							'**/*.html',
+							'**/*.jpg'
+						],
+						dest: debug
+					}
 				]
 			},
 			ios: {
+				verbose: true,
 				files: [
-					{cwd: source, src: 'css/**/*.css', dest: debug_ios + "/www"},
-					{cwd: source, src: 'js/**/*.js', dest: debug_ios + "/www"},
-					{cwd: source, src: '**/*.html', dest: debug_ios + "/www"},
-					{cwd: source, src: '**/*.jpg', dest: debug_ios + "/www"}
+					{
+						cwd: source,
+						src: [
+							"css/**/*.css",
+							'js/**/*.js',
+							'**/*.html',
+							'**/*.jpg'
+						],
+						dest: debug_ios + "/www"
+					}
 				]
-			}
-		},
-		//Run clean folder
-		clean: {
-			simulate: {
-				clean: [simulate]
 			},
-			dist: {
-				clean: ["dist"]
+			dist:{
+				updateAndDelete: true,
+				ignoreInDest: [".ab", ".ab/**/*"],
+				files:[
+					{
+						cwd: source,
+						src: [
+							"**/*",
+							".abignore",
+							".debug.abignore",
+							".release.abignore",
+							".abproject",
+							".debug.abproject",
+							".release.abproject"
+						],
+						dest: buildDestination
+					}
+				]
 			}
 		},
 		//Run shell command
 		shell: {
-			install_android: {
+			debug_android: {
 				command: function () {
 					var result = [];
 					//result.push("adb shell pm clear " + packages);
@@ -48,8 +76,8 @@ module.exports = function (grunt) {
 					return result.join("&&");
 				}
 			},
-			install_ios: {
-				command: "appbuilder --path app emulate ios --device iPhone-5"
+			debug_ios: {
+				command: "appbuilder --path "+ buildDestination +" emulate ios --device " + iPhone
 			},
 			reload_android: {
 				command: [
@@ -60,72 +88,103 @@ module.exports = function (grunt) {
 				].join("&&")
 			},
 			reload_ios: {
-				command: "ios-sim launch " + debug_ios + " --devicetypeid com.apple.CoreSimulator.SimDeviceType.iPhone-4s"
+				command: "ios-sim launch " + debug_ios + " --devicetypeid com.apple.CoreSimulator.SimDeviceType." + iPhone
 			},
 			clean_live: {
-				command: "rm -R live/*"
+				command: "rm -rf live/"
 			},
 			clean_dist: {
-				command: "rm -R dist/*"
+				command: "rm -rf "+buildDestination+"/"
+			},
+			create_dir_debug:{
+				command: "mkdir -p debug"
+			},
+			create_dir_release:{
+				command: "mkdir -p " + releaseDir
+			},
+			remove_temp:{
+				command: "rm -rf "+ buildDestination +"/.ab"
 			}
 		},
 		// Copy the source files into the dist directory
-		copy: {
-			all: {
-				files: [
-					{
-						expand: true,
-						cwd: "app/",
-						src: ["**/*", '!**/*.apk'],
-						dest: "dist/",
-						dot: true
-					}
-				]
-			},
-			ios: {
-				files: [
-					{
-						expand: true,
-						cwd:"app/",
-						src: [
-							"css/**",
-							"bower_components/**",
-							"js/**",
-							"img/**",
-							"**/*.html",
-							'!**/*.apk',
-							"!app/App_Resources/**",
-							"!app/Plugins/**",
-							"!app/scss/**"
-						],
-						dest: debug_ios + "/www/",
-						dot: true
-					}
-				]
-			}
-		},
+//		copy: {
+//			all: {
+//				files: [
+//					{
+//						expand: true,
+//						cwd: "app/",
+//						src: ["**/*", '!**/*.apk'],
+//						dest: buildDestination + "/",
+//						dot: true
+//					}
+//				]
+//			},
+//			ios: {
+//				files: [
+//					{
+//						expand: true,
+//						cwd: buildDestination+"/",
+//						src: [
+//							"css/**",
+//							"bower_components/**",
+//							"js/**",
+//							"**/*.{jpg,png}",
+//							"scss/**",
+//							"**/*.html",
+//							'!**/*.apk',
+//							"!.ab/**",
+//							"!kendo",
+//							"!App_Resources/**",
+//							"!Plugins/**"
+//						],
+//						dest: debug_ios + "/www/",
+//						dot: true
+//					}
+//				]
+//			}
+//		},
 		// Build AppBuilder release builds for iOS & Android
 		appbuilder: {
-			options: {
-				debug: true
-			},
 			android: {
 				options: {
+					debug: true,
 					platform: "android",
 					certificate: "Aziz Muhammad" //@see: "cert/Readme.txt"
 				},
 				files: {
-					"debug/app.apk": ["dist"]
+					"debug/app.apk": [buildDestination]
 				}
 			},
 			ios: {
 				options: {
+					debug: true,
 					platform: "ios",
 					provision: "AsterX MediRecords iOS app Development",
 					certificate: "iPhone Developer: Muhammad Aziz (C8948836V9) 1"
 				},
 				files: {
-					"debug/app.ipa": ["dist"]
+					"debug/app.ipa": [buildDestination]
+				}
+			},
+			android_release: {
+				options: {
+					debug: false,
+					platform: "android",
+					certificate: "Aziz Muhammad" //@see: "cert/Readme.txt"
+				},
+				files: {
+					"release/mrapp.apk": [buildDestination]
+				}
+			},
+			ios_release: {
+				options: {
+					debug: false,
+					platform: "ios",
+					provision: "AsterX MediRecords iOS app Development",
+					certificate: "iPhone Developer: Muhammad Aziz (C8948836V9) 1"
+				},
+				files: {
+					"release/mrapp.ipa": [buildDestination]
 				}
 			}
 		},
@@ -156,6 +215,10 @@ module.exports = function (grunt) {
 		},
 		// Compile all .scss files into .css files
 		sass: {
+			options:{
+				sourceMap: true,
+				outputStyle: 'compressed'
+			},
 			all: {
 				files: [
 					{
@@ -170,11 +233,14 @@ module.exports = function (grunt) {
 		},
 		//  Run Uglify on all JavaScript files in the dist directory
 		uglify: {
+			options:{
+				sourceMap: true
+			},
 			all: {
 				files: [
 					{
 						expand: true,
-						src: "dist/js/**/*.js"
+						src: buildDestination + "/js/**/*.js"
 					}
 				]
 			}
@@ -185,7 +251,7 @@ module.exports = function (grunt) {
 				files: [
 					{
 						expand: true,
-						src: "dist/css/**/*.css"
+						src: buildDestination + "/css/**/*.css"
 					}
 				]
 			}
@@ -200,7 +266,7 @@ module.exports = function (grunt) {
 				files: [
 					{
 						expand: true,
-						src: "dist/**/*.html"
+						src: buildDestination + "/**/*.html"
 					}
 				]
 			}
@@ -211,27 +277,27 @@ module.exports = function (grunt) {
 				files: [
 					{
 						expand: true,
-						cwd: "dist/img/",
+						cwd: buildDestination + "/img/",
 						src: ["**/*.{png,gif,jpg}"],
-						dest: "dist/img/"
+						dest: buildDestination + "/img/"
 					}
 				]
 			}
 		},
 		// Watch for changes in the scss directory and invoke the
 		// sass task as necessary
-		watch: {
-			sass: {
-				files: ["app/scss/**/*.scss"],
-				tasks: ["sass"]
-			},
-			sync: {
-				files: [source + "**/*"],
-				tasks: ["sync"],
-				options: {
-					event: ['added', 'changed', 'deleted']
-				}
-			}
+//		watch: {
+//			sass: {
+//				files: ["app/scss/**/*.scss"],
+//				tasks: ["sass"]
+//			},
+//			sync: {
+//				files: [source + "**/*"],
+//				tasks: ["sync"],
+//				options: {
+//					event: ['added', 'changed', 'deleted']
+//				}
+//			}
 //            ,
 //            android: {
 //                files: [source + "**/*.{js,html,css,kml}"],
@@ -247,7 +313,7 @@ module.exports = function (grunt) {
 //                    event: ['added', 'changed', 'deleted']
 //                }
 //            }
-		}
+//		}
 	});
 	// Utility
 	grunt.loadNpmTasks("grunt-contrib-watch");
@@ -255,18 +321,17 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks("grunt-shell");
 	grunt.loadNpmTasks("grunt-sync");
 	grunt.loadNpmTasks("grunt-contrib-appbuilder");
-	grunt.loadNpmTasks('grunt-contrib-clean');
-
+	
 	// Linting
 	grunt.loadNpmTasks("grunt-contrib-jshint");
 	grunt.loadNpmTasks("grunt-jscs");
-	grunt.loadNpmTasks("grunt-contrib-csslint");
 	//grunt.loadNpmTasks( "grunt-html" );
 
 	// Optimization
 	grunt.loadNpmTasks("grunt-sass");
+	grunt.loadNpmTasks("grunt-contrib-uglify");
 	/*
-	 grunt.loadNpmTasks( "grunt-contrib-uglify" );
+	 
 	 grunt.loadNpmTasks( "grunt-contrib-cssmin" );
 	 grunt.loadNpmTasks( "grunt-contrib-htmlmin" );
 	 grunt.loadNpmTasks( "grunt-contrib-imagemin" );
@@ -274,21 +339,39 @@ module.exports = function (grunt) {
 
 	grunt.registerTask("default", ["lint"]);
 	//grunt.registerTask( "lint", [ "jshint", "jscs", "csslint", "htmllint" ]);
-	grunt.registerTask("lint", ["jshint", "csslint"]);
+	grunt.registerTask("lint", ["jshint"]);
 	/*
 	 grunt.registerTask( "optimize", [ "sass", "uglify", "cssmin", "htmlmin", "imagemin"]);
 	 
 	 grunt.registerTask( "build", [ "lint", "copy", "optimize" ]);
 	 */
 	//grunt.registerTask("dev", ["lint", "sync", "http-server:dev", "shell:browse", "watch:sync"]);
-	grunt.registerTask("reload:android", ["shell:reload_android"]);
-	grunt.registerTask("reload:ios", ["shell:reload_ios"]);
-	grunt.registerTask("run:android", ["lint", "sync:android", "reload:android"]);
-	grunt.registerTask("run:ios", ["lint", "copy:ios", "reload:ios"]);
-	grunt.registerTask("build", ["lint", "shell:clean_dist", "copy"]);
-	grunt.registerTask("android", ["build", "appbuilder:android", "shell:install_android"]);
-	grunt.registerTask("ios", ["build", "appbuilder:ios"]);
-	grunt.registerTask("install:android", ["android"]);
-	grunt.registerTask("install:ios", ["shell:install_ios"]);
-	grunt.registerTask("emulate", ["install:ios"]);
+	
+	//Sync between app and dist, then do optimize
+	grunt.registerTask("optimize", [ "sync:dist", "sass", "uglify"]);
+	
+	//build app
+	grunt.registerTask("build", ["lint", "optimize"]);
+	
+	//Livesync to device, note: need to build first
+	grunt.registerTask("android", ["build", "sync:android", "shell:reload_android"]);
+	grunt.registerTask("ios", ["build" , "sync:ios", "shell:reload_ios"]);
+	
+	//build app in debug mode
+	grunt.registerTask("debug:android", ["build", "shell:create_dir_debug", "appbuilder:android", "shell:debug_android"]);
+	grunt.registerTask("debug:ios", ["build", "shell:create_dir_debug", "shell:debug_ios"]);
+	
+	//Run this task if there is any error when running `grunt ios`
+	grunt.registerTask("redebug", ["shell:remove_temp", "debug:ios"]);
+	
+	//build app in release mode
+	grunt.registerTask("release:android", ["build", "shell:create_dir_release", "appbuilder:android_release"]);
+	grunt.registerTask("release:ios", ["build", "shell:create_dir_release", "appbuilder:ios_release"]);
+	
+//	grunt.registerTask("build", ["lint", "shell:clean_dist", "copy"]);
+//	grunt.registerTask("android", ["build", "appbuilder:android", "shell:install_android"]);
+//	grunt.registerTask("ios", ["build", "appbuilder:ios"]);
+//	grunt.registerTask("install:android", ["android"]);
+//	grunt.registerTask("install:ios", ["shell:install_ios"]);
+//	grunt.registerTask("emulate", ["install:ios"]);
 };

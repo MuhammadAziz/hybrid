@@ -4,7 +4,7 @@ define([
 	'utils/passcode-helper',
 	'utils/settings'
 ], function (html, View, passcodeHelper, settings) {
-	var $passCode = null, $confirmPasscode = null, notif = navigator.notification;;
+	var $passCode = null, $confirmPasscode = null, notif = navigator.notification;
 	var model = kendo.observable({
 		isConfirm: false,
 		onInit: function (e) {

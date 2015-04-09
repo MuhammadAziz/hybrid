@@ -9,6 +9,9 @@ define([
         onAfterShow: function(e){
             
         },
+		formData:{
+			token: null
+		},
         gotoHome: function(){
             App.mobile.navigate("#view-pin");
         }

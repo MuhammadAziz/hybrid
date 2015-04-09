@@ -1,8 +1,9 @@
 define([
 	'text!views/setup/agreement/agreement.html',
 	'views/baseview',
-	'utils/settings'
-], function (html, View, settings) {
+	'utils/settings',
+	'utils/passcode-helper'
+], function (html, View, settings, passcode) {
     var model = kendo.observable({
         onInit: function(e){
             
@@ -14,6 +15,7 @@ define([
 			
 		},
         next: function(){
+			passcode.updatePasscodeCookie();
 			settings.disableFirstLaunch();
             App.mobile.navigate("#view-home");
         },
