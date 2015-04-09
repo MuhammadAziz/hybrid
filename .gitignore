@@ -3,9 +3,9 @@
 *.user-settings.xml
 *.suo
 
-/bin/Debug/Android
 *.suo
 **/*.apk
+**/*.ipa
 /node_modules/
 /live/
 /app/.ab

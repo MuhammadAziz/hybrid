@@ -18,7 +18,6 @@
     "org.apache.cordova.splashscreen",
     "org.apache.cordova.vibration",
     "org.apache.cordova.plugin.sms@0.1.1",
-    "com.phonegap.plugins.barcodescanner",
     "com.phonegap.plugins.sqlite@1.0.5",
     "com.ionic.keyboard@1.0.4",
     "hu.dpal.phonegap.plugins.SpinnerDialog@1.3.1",

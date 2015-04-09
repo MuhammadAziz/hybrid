@@ -11,6 +11,13 @@ module.exports = function (grunt) {
 	var androidTarget = "12590FAA-5EDD-4B12-856D-F52A0A1599F2/";
 	var iPhone = "iPhone-4s";
 	var releaseDate = (new Date()).toISOString().slice(0,10);
+	
+	var iosRelease = {};
+	iosRelease[releaseDir + "/mrapp-"+ releaseDate +".ipa"] = [buildDestination];
+	
+	var androidRelease = {};
+	androidRelease[releaseDir + "/mrapp-"+ releaseDate +".apk"] = [buildDestination];
+	
 	grunt.initConfig({
 		pkg: grunt.file.readJSON("package.json"),
 		//Run synchronize folder 
@@ -172,9 +179,7 @@ module.exports = function (grunt) {
 					platform: "android",
 					certificate: "Aziz Muhammad" //@see: "cert/Readme.txt"
 				},
-				files: {
-					"release/mrapp.apk": [buildDestination]
-				}
+				files: androidRelease
 			},
 			ios_release: {
 				options: {
@@ -183,9 +188,7 @@ module.exports = function (grunt) {
 					provision: "AsterX MediRecords iOS app Development",
 					certificate: "iPhone Developer: Muhammad Aziz (C8948836V9) 1"
 				},
-				files: {
-					"release/mrapp.ipa": [buildDestination]
-				}
+				files: iosRelease
 			}
 		},
 		// Run JSHint using the .jshintrc file for config
@@ -283,7 +286,7 @@ module.exports = function (grunt) {
 					}
 				]
 			}
-		},
+		}
 		// Watch for changes in the scss directory and invoke the
 		// sass task as necessary
 //		watch: {
