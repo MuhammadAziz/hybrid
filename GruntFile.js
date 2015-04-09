@@ -39,14 +39,24 @@ module.exports = function (grunt) {
 			},
 			ios: {
 				verbose: true,
+				updateAndDelete: true,
+                                ignoreInDest: ["plugins", "plugins/**/*"],
 				files: [
 					{
 						cwd: buildDestination,
 						src: [
-							"css/**/*.css",
-							'js/**/*.js',
-							'**/*.html',
-							'**/*.jpg'
+							"css/**",
+							"bower_components/**",
+							"js/**",
+							"img/**",
+							"photo/**",
+							"!scss/**",
+							"*.html",
+							"*.js",
+							'!**/*.apk',
+							"!.ab/**",
+							"kendo/**",
+							"!App_Resources/**",
 						],
 						dest: debug_ios + "/www"
 					}
@@ -366,7 +376,7 @@ module.exports = function (grunt) {
 	grunt.registerTask("debug:ios", ["development", "shell:create_dir_debug", "shell:debug_ios"]);
 	
 	//Run this task if there is any error when running `grunt ios`
-	grunt.registerTask("redebug", ["shell:remove_temp", "debug:ios"]);
+	grunt.registerTask("redebug", ["shell:remove_temp", "shell:clean_dist", "debug:ios"]);
 	
 	//build app in release mode
 	grunt.registerTask("release:android", ["build", "shell:create_dir_release", "appbuilder:android_release"]);
