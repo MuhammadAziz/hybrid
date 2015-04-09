@@ -1,28 +1,29 @@
 define([
 	'text!views/home/home.html',
-	'views/baseview',
 	'utils/settings',
 	'utils/passcode-helper'
-], function (html, View, settings, passcode) {
+], function (html, settings, passcode) {
 	var $home = null;
-	var model = kendo.observable({
+	var model = mrapp.view({
+                html: html,
+                name: "home",
 		onInit: function (e) {
 			$home = e.sender.element;
 		},
 		onBeforeShow: function (e) {
-			if (App.mobile) {
+			if (mrapp.mobile) {
 				if (settings.isFirstLaunch()) {
 					e.preventDefault();
-					App.mobile.pane.history.pop();
-					App.mobile.navigate("#view-intro");
+					mrapp.mobile.pane.history.pop();
+					mrapp.mobile.navigate("#view-intro");
 //				} else if (settings.isLoggedIn() === false) {
 //					e.preventDefault();
-//					App.mobile.pane.history.pop();
-//					App.mobile.navigate("#view-login");
+//					mrapp.mobile.pane.history.pop();
+//					mrapp.mobile.navigate("#view-login");
 				} else if (passcode.isInvalidPasscode()) {
 					e.preventDefault();
-					App.mobile.pane.history.pop();
-					App.mobile.navigate("#view-lock");
+					mrapp.mobile.pane.history.pop();
+					mrapp.mobile.navigate("#view-lock");
 				}
 			}
 		},
@@ -32,10 +33,9 @@ define([
 		reset: function (e) {
 			settings.setDefault();
 			passcode.reset();
-			App.mobile.pane.history.pop();
+			mrapp.mobile.pane.history.pop();
 			this.onBeforeShow(e);
 		}
 	});
-	new View('home', html, model);
 	return model;
 });

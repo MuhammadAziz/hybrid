@@ -1,10 +1,11 @@
 define([
 	'text!views/lock/lock.html',
-	'views/baseview',
 	'utils/passcode-helper'
-], function (html, View, passcode) {
+], function (html, passcode) {
     var notif = navigator.notification;
-    var model = kendo.observable({
+    var model = mrapp.view({
+        html: html,
+        name: "lock",
         onInit: function(e){
             
         },
@@ -20,7 +21,7 @@ define([
         unlock: function(){
             if(this.validate()){
 				passcode.updatePasscodeCookie();
-				App.mobile.navigate("#view-home");
+				mrapp.mobile.navigate("#view-home");
 			}else{
 				notif.alert("Please enter correct pin", null, "Invalid PIN", "Ok");
 			}
@@ -33,6 +34,5 @@ define([
 			}
 		}
     });
-    new View('lock', html, model);
     return model;
 });

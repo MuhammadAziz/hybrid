@@ -1,10 +1,11 @@
 define([
 	'text!views/setup/agreement/agreement.html',
-	'views/baseview',
 	'utils/settings',
 	'utils/passcode-helper'
-], function (html, View, settings, passcode) {
-    var model = kendo.observable({
+], function (html, settings, passcode) {
+    var model = mrapp.view({
+        html: html,
+        name: "agreement",
         onInit: function(e){
             
         },
@@ -17,12 +18,11 @@ define([
         next: function(){
 			passcode.updatePasscodeCookie();
 			settings.disableFirstLaunch();
-            App.mobile.navigate("#view-home");
+            mrapp.mobile.navigate("#view-home");
         },
 		back: function(){
 			
 		}
     });
-    new View('agreement', html, model);
     return model;
 });

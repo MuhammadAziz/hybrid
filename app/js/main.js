@@ -6,20 +6,20 @@ require.config({
     }
 });
 
-define(['app', 'views/base-view-model'], function (app) {
+define(['mrapp', 'views/base-view-model'], function (mrapp) {
     // if we are running on device, listen for cordova deviceready event
     if (kendo.mobileOs) {
         document.addEventListener('deviceready', function () {
-            // initialize application
-            app.init();
+            // initialize mrapplication
+            mrapp.init();
 
             // hide the native spash screen
             navigator.splashscreen.hide();
         }, false);
     }
     else {
-        // we are running on the web (prolly debug) so just show the app
-        app.init();
+        // we are running on the web (prolly debug) so just show the mrapp
+        mrapp.init();
     }
 
 });

@@ -66,5 +66,5 @@
     "worker": false,
     "wsh": false,
     "yui": false,
-    "globals": ["kendo","jQuery","$","require","define"]
+    "globals": ["kendo","jQuery","$","require","define", "mrapp"]
 }

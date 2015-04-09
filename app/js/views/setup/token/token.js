@@ -1,8 +1,9 @@
 define([
 	'text!views/setup/token/token.html',
-	'views/baseview'
-], function (html, View) {
-    var model = kendo.observable({
+], function (html) {
+    var model = mrapp.view({
+        html: html,
+        name: "token",
         onInit: function(e){
             
         },
@@ -12,10 +13,9 @@ define([
 		formData:{
 			token: null
 		},
-        gotoHome: function(){
-            App.mobile.navigate("#view-pin");
+        next: function(){
+            mrapp.mobile.navigate("#view-pin");
         }
     });
-    new View('token', html, model);
     return model;
 });

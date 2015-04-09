@@ -1,8 +1,9 @@
 define([
-	'text!views/setup/info/info.html',
-	'views/baseview'
-], function (html, View) {
-    var model = kendo.observable({
+	'text!views/setup/info/info.html'
+], function (html) {
+    var model = mrapp.view({
+        html: html,
+        name: "info",
         onInit: function(e){
             
         },
@@ -13,6 +14,5 @@ define([
             alert("test");
         }
     });
-    new View('info', html, model);
     return model;
 });

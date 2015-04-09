@@ -1,8 +1,9 @@
 define([
-	'text!views/setup/password/password.html',
-	'views/baseview'
-], function (html, View) {
-    var model = kendo.observable({
+	'text!views/setup/password/password.html'
+], function (html) {
+    var model = mrapp.view({
+        html: html,
+        name: "password",
         onInit: function(e){
             
         },
@@ -13,6 +14,5 @@ define([
             alert("test");
         }
     });
-    new View('password', html, model);
     return model;
 });

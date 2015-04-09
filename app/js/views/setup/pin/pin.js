@@ -1,11 +1,12 @@
 define([
 	'text!views/setup/pin/pin.html',
-	'views/baseview',
-	'utils/passcode-helper',
+        'utils/passcode-helper',
 	'utils/settings'
-], function (html, View, passcodeHelper, settings) {
+], function (html, passcodeHelper, settings) {
 	var $passCode = null, $confirmPasscode = null, notif = navigator.notification;
-	var model = kendo.observable({
+	var model = mrapp.view({
+                html: html,
+                name: "pin",
 		isConfirm: false,
 		onInit: function (e) {
 			$passCode = e.sender.element.find('#view-pin-code-1');
@@ -91,9 +92,9 @@ define([
 			passcodeHelper.savePasscode(data);
 			passcodeHelper.togglePasscode(true);
 			if(settings.isFirstLaunch()){
-				App.mobile.navigate("#view-agreement");
+				mrapp.mobile.navigate("#view-agreement");
 			}else{
-				App.mobile.navigate("#:back");
+				mrapp.mobile.navigate("#:back");
 			}
 		},
 		reset: function(){
@@ -104,12 +105,11 @@ define([
 		skip: function () {
 			passcodeHelper.togglePasscode(false);
 			if(settings.isFirstLaunch()){
-				App.mobile.navigate("#view-agreement");
+				mrapp.mobile.navigate("#view-agreement");
 			}else{
-				App.mobile.navigate("#:back");
+				mrapp.mobile.navigate("#:back");
 			}
 		}
 	});
-	new View('pin', html, model);
 	return model;
 });
