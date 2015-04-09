@@ -37,32 +37,33 @@ module.exports = function (grunt) {
 					}
 				]
 			},
-			ios: {
-				verbose: true,
-				updateAndDelete: true,
-                                ignoreInDest: ["plugins", "plugins/**/*"],
-				files: [
-					{
-						cwd: buildDestination,
-						src: [
-							"css/**",
-							"bower_components/**",
-							"js/**",
-							"img/**",
-							"photo/**",
-							"!scss/**",
-							"*.html",
-							"*.js",
-							'!**/*.apk',
-							"!.ab/**",
-							"kendo/**",
-							"!App_Resources/**",
-						],
-						dest: debug_ios + "/www"
-					}
-				]
-			},
+//			ios: {
+//				verbose: true,
+//				updateAndDelete: true,
+//                                ignoreInDest: ["plugins", "plugins/**/*"],
+//				files: [
+//					{
+//						cwd: buildDestination + "/",
+//						src: [
+//							"css/**/*",
+//							"bower_components/**/*",
+//							"js/**/*",
+//							"img/**/*",
+//							"photo/**/*",
+//							"!scss/**/*",
+//							"*.html",
+//							"*.js",
+//							'!**/*.apk',
+//							"!.ab/**/*",
+//							"kendo/**/*",
+//							"!App_Resources/**/*",
+//						],
+//						dest: debug_ios + "/www"
+//					}
+//				]
+//			},
 			dist:{
+                                verbose: true,
 				updateAndDelete: true,
 				ignoreInDest: [".ab", ".ab/**/*"],
 				files:[
@@ -124,7 +125,7 @@ module.exports = function (grunt) {
 			}
 		},
 		// Copy the source files into the dist directory
-//		copy: {
+		copy: {
 //			all: {
 //				files: [
 //					{
@@ -136,30 +137,30 @@ module.exports = function (grunt) {
 //					}
 //				]
 //			},
-//			ios: {
-//				files: [
-//					{
-//						expand: true,
-//						cwd: buildDestination+"/",
-//						src: [
-//							"css/**",
-//							"bower_components/**",
-//							"js/**",
-//							"**/*.{jpg,png}",
-//							"scss/**",
-//							"**/*.html",
-//							'!**/*.apk',
-//							"!.ab/**",
-//							"!kendo",
-//							"!App_Resources/**",
-//							"!Plugins/**"
-//						],
-//						dest: debug_ios + "/www/",
-//						dot: true
-//					}
-//				]
-//			}
-//		},
+			ios: {
+				files: [
+					{
+						expand: true,
+						cwd: buildDestination+"/",
+						src: [
+							"css/**",
+							"bower_components/**",
+							"js/**",
+							"**/*.{jpg,png}",
+							"scss/**",
+							"**/*.html",
+							'!**/*.apk',
+							"!.ab/**",
+							"!kendo",
+							"!App_Resources/**",
+							"!Plugins/**"
+						],
+						dest: debug_ios + "/www/",
+						dot: true
+					}
+				]
+			}
+		},
 		// Build AppBuilder release builds for iOS & Android
 		appbuilder: {
 			android: {
@@ -369,7 +370,7 @@ module.exports = function (grunt) {
 	
 	//Livesync to device, note: need to build first
 	grunt.registerTask("android", ["development", "sync:android", "shell:reload_android"]);
-	grunt.registerTask("ios", ["development" , "sync:ios", "shell:reload_ios"]);
+	grunt.registerTask("ios", ["development" , "copy:ios", "shell:reload_ios"]);
 	
 	//build app in debug mode
 	grunt.registerTask("debug:android", ["development", "shell:create_dir_debug", "appbuilder:android", "shell:debug_android"]);
