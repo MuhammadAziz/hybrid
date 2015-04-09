@@ -6,7 +6,7 @@ require.config({
     }
 });
 
-define(['app'], function (app) {
+define(['app', 'views/base-view-model'], function (app) {
     // if we are running on device, listen for cordova deviceready event
     if (kendo.mobileOs) {
         document.addEventListener('deviceready', function () {

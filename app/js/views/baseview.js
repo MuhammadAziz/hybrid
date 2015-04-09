@@ -1,6 +1,6 @@
 define(function () {
     // Main app test
-    var App = window.App = window.App || {model: {}, events: {}};
+    var App = window.App = window.App || {model: {}};
 
     var View = kendo.Class.extend({
         init: function (name, template, model, events) {

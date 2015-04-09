@@ -1,18 +1,19 @@
-define(function(){
-	var App = window.App = window.App || {model: {}, events: {}};
-	var base = kendo.data.ObservableObject.extend({
-		init: function(){
-			kendo.data.ObservableObject.init.call(this, arguments);
+define(function () {
+	var App = window.App = window.App || {model: {}};
+	var MediRecordsObservable = kendo.data.ObservableObject.extend({
+		init: function () {
+			kendo.data.ObservableObject.fn.init.call(this, arguments);
 		},
-		events: {
-			onInit: function(){
-				
-			},
-			onAfterShow: function(){
-				
-			}
+		onInit: function () {
+
+		},
+		onAfterShow: function () {
+
 		}
 	});
-	return base;
+	App.mrapp = function (options) {
+		return new MediRecordsObservable(options);
+	};
+	return MediRecordsObservable;
 });
 

@@ -26,7 +26,7 @@ module.exports = function (grunt) {
 				verbose: true,
 				files: [
 					{
-						cwd: source,
+						cwd: buildDestination,
 						src: [
 							"css/**/*.css",
 							'js/**/*.js',
@@ -41,7 +41,7 @@ module.exports = function (grunt) {
 				verbose: true,
 				files: [
 					{
-						cwd: source,
+						cwd: buildDestination,
 						src: [
 							"css/**/*.css",
 							'js/**/*.js',
@@ -236,14 +236,13 @@ module.exports = function (grunt) {
 		},
 		//  Run Uglify on all JavaScript files in the dist directory
 		uglify: {
-			options:{
-				sourceMap: true
-			},
 			all: {
 				files: [
 					{
 						expand: true,
-						src: buildDestination + "/js/**/*.js"
+						cwd: buildDestination + "/js/",
+						src: "**/*.js",
+						dest: buildDestination + "/js/"
 					}
 				]
 			}
@@ -351,18 +350,20 @@ module.exports = function (grunt) {
 	//grunt.registerTask("dev", ["lint", "sync", "http-server:dev", "shell:browse", "watch:sync"]);
 	
 	//Sync between app and dist, then do optimize
-	grunt.registerTask("optimize", [ "sync:dist", "sass", "uglify"]);
+	grunt.registerTask("optimize", [ "sass", "sync:dist", "uglify"]);
 	
 	//build app
 	grunt.registerTask("build", ["lint", "optimize"]);
 	
+	grunt.registerTask("development", ["lint", "sass", "sync:dist"]);
+	
 	//Livesync to device, note: need to build first
-	grunt.registerTask("android", ["build", "sync:android", "shell:reload_android"]);
-	grunt.registerTask("ios", ["build" , "sync:ios", "shell:reload_ios"]);
+	grunt.registerTask("android", ["development", "sync:android", "shell:reload_android"]);
+	grunt.registerTask("ios", ["development" , "sync:ios", "shell:reload_ios"]);
 	
 	//build app in debug mode
-	grunt.registerTask("debug:android", ["build", "shell:create_dir_debug", "appbuilder:android", "shell:debug_android"]);
-	grunt.registerTask("debug:ios", ["build", "shell:create_dir_debug", "shell:debug_ios"]);
+	grunt.registerTask("debug:android", ["development", "shell:create_dir_debug", "appbuilder:android", "shell:debug_android"]);
+	grunt.registerTask("debug:ios", ["development", "shell:create_dir_debug", "shell:debug_ios"]);
 	
 	//Run this task if there is any error when running `grunt ios`
 	grunt.registerTask("redebug", ["shell:remove_temp", "debug:ios"]);
