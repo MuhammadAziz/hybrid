@@ -16,8 +16,4 @@ define(['mrapp'], function(mrapp){
 	mrapp.data = function(options){
 		return new DataSource(options);
 	};
-<<<<<<< HEAD
 });
-=======
-});
->>>>>>> 5edae083c8b8818ce8b9749bfc08bb2640227276
