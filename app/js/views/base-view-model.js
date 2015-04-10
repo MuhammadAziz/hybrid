@@ -1,5 +1,4 @@
-define(function () {
-	var mrapp = window.mrapp = window.mrapp || {model: {}};
+define(['mrapp'], function (mrapp) {
 	var MediRecordsObservable = kendo.data.ObservableObject.extend({
 		init: function (options) {
 			kendo.data.ObservableObject.fn.init.call(this, options);
@@ -21,7 +20,13 @@ define(function () {
 
 		},
 		resetView: function (e) {
-
+			//scroll view to top
+			e.view.scroller.reset();
+			
+			//clear active tab strip
+			e.view.footer.find('[data-role-tabstrip]')
+					.data('kendoMobileTabStrip')
+					.clear();
 		}
 	});
 	mrapp.view = function (options) {

@@ -6,7 +6,11 @@ require.config({
     }
 });
 
-define(['mrapp', 'views/base-view-model'], function (mrapp) {
+define([
+	'mrapp', 
+	'views/base-view-model', 
+	'data/base-data-source'
+], function (mrapp) {
     // if we are running on device, listen for cordova deviceready event
     if (kendo.mobileOs) {
         document.addEventListener('deviceready', function () {
@@ -21,5 +25,4 @@ define(['mrapp', 'views/base-view-model'], function (mrapp) {
         // we are running on the web (prolly debug) so just show the mrapp
         mrapp.init();
     }
-
 });
