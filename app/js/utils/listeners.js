@@ -16,7 +16,11 @@ define([
 				alert("error occured");
 			});
 			document.addEventListener("backbutton", function (e) {
-				navigator.app.exitApp();
+                //TODO:
+                //if view contain data-role="backbutton"
+                // navigator.app.backHistory()
+                //else
+                //navigator.app.exitApp();
 			}, false);
 		}
 	};
