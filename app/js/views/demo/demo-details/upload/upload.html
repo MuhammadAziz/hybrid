@@ -1,0 +1,24 @@
+<div data-role="view" id="view-upload" class="content" data-model="App.model.upload" data-init="App.events.upload.onInit" style="display: none;">
+    <header data-role="header">
+        <div data-role="navbar">
+            <a data-role="backbutton" data-icon="arrow-w" data-align="left">Back</a>
+        </div>
+    </header>
+    <div class="row">
+        <button class="col-xs-6 button dh" data-bind="click: uploadImage">Upload Image</button>
+        <button class="col-xs-6 button dh" data-max-upload="1000000" data-bind="click: uploadImage">Upload Image (with file restriction)</button>
+        <button class="col-xs-12 button dh" data-max-upload="1000000" data-bind="click: uploadFile">Upload File</button>
+    </div>
+    <div class="row result-area ch70">
+        <div class="results">
+            <div id="view-upload-result" class="desc">
+                <ul class="left">
+                    <li>Clicking the Dowload button downloads an image from the AppBuilder site and saves it on the device.</li>
+                    <li>Clicking the Upload button allows you to pick an image and upload it to http://www.filedropper.com/.</li>
+                </ul>
+            </div>
+            <img id="view-upload-downloaded"/>
+        </div>
+        <div class="separator"></div>
+    </div>
+</div>

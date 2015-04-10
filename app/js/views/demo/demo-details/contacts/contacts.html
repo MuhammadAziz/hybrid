@@ -1,0 +1,35 @@
+<div data-role="view" id="view-contacts" class="content" data-model="App.model.contacts" data-init="App.events.contacts.onInit">
+    <header data-role="header">
+        <div data-role="navbar">
+            <a data-role="backbutton" data-icon="arrow-w" data-align="left">Back</a>
+        </div>
+    </header>
+    <div class="row">
+        <label class="col-xs-12">Name</label>
+        <label class="col-xs-4">Given Name</label><input class="col-xs-8" type="text" placeholder="Name" data-bind="value: formData.name.givenName"/>
+        <label class="col-xs-4">Family Name:</label><input class="col-xs-8" type="text" placeholder="Name" data-bind="value: formData.name.familyName"/>
+        <label class="col-xs-12">Addresses</label>
+        <label class="col-xs-4">Type:</label><input class="col-xs-8" type="text" placeholder="Name" data-bind="value: formData.addresses.type"/>
+        <label class="col-xs-4">Street:</label><input class="col-xs-8" type="text" placeholder="Name" data-bind="value: formData.addresses.streetAddress"/>
+        <label class="col-xs-4">Region:</label><input class="col-xs-8" type="text" placeholder="Name" data-bind="value: formData.addresses.region"/>
+        <label class="col-xs-4">Locality:</label><input class="col-xs-8" type="text" placeholder="Name" data-bind="value: formData.addresses.locality"/>
+        <label class="col-xs-4">Post Code:</label><input class="col-xs-8" type="text" placeholder="Name" data-bind="value: formData.addresses.postalCode"/>
+        <label class="col-xs-4">Country:</label><input class="col-xs-8" type="text" placeholder="Name" data-bind="value: formData.addresses.country"/>
+        <label class="col-xs-12">Phone Numbers</label>
+        <label class="col-xs-4">Home:</label><input class="col-xs-8" type="text" placeholder="Name" data-bind="value: formData.phoneNumbers.home"/>
+        <label class="col-xs-4">Mobile:</label><input class="col-xs-8" type="text" placeholder="Name" data-bind="value: formData.phoneNumbers.mobile"/>
+        <label class="col-xs-4">Work:</label><input class="col-xs-8" type="text" placeholder="Name" data-bind="value: formData.phoneNumbers.work"/>
+        <label class="col-xs-12">Email</label>
+        <label class="col-xs-4">Home:</label><input class="col-xs-8" type="text" placeholder="Name" data-bind="value: formData.emails.home"/>
+        <label class="col-xs-4">Work:</label><input class="col-xs-8" type="text" placeholder="Name" data-bind="value: formData.emails.work"/>
+    </div>
+    <div class="row">
+        <button class="col-xs-6" data-bind="click: createContact">Create New Contact</button>
+        <button class="col-xs-6" data-bind="click: findContact">Find Contact</button>
+        <button class="col-xs-6" data-bind="click: cloneContact">Clone Contact</button>
+        <button class="col-xs-6" data-bind="click: removeContact">Remove Contact</button>
+    </div>
+    <div class="row">
+        <div class="col-xs-12" data-bind="html: result"></div>
+    </div>
+</div>

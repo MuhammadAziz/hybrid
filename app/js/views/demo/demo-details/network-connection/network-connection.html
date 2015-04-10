@@ -1,0 +1,27 @@
+<div data-role="view" id="view-network-connection" class="content" data-model="App.model.networkConnection" data-init="App.events.networkConnection.onInit">
+    <header data-role="header">
+        <div data-role="navbar">
+            <a data-role="backbutton" data-icon="arrow-w" data-align="left">Back</a>
+        </div>
+    </header>
+    <div class="content">
+        <div class="action-area ch30">
+            <button class="button dh" data-bind="click: checkConnection">Check connection</button>
+        </div>
+        <div class="result-area ch70">
+            <div class="results">
+                <div class="result-info">
+                    <div class="cw60">Connection type:</div>
+                    <div id="messageConnectionType"></div>
+                    <div class="clear"></div>
+                </div>
+                <div class="result-info">
+                    <div class="cw60">Last check at:</div>
+                    <div id="currentTime"></div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="separator"></div>
+        </div>
+    </div>
+</div>
