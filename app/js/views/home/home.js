@@ -14,21 +14,22 @@ define([
 			if (mrapp.mobile) {
 				if (settings.isFirstLaunch()) {
 					e.preventDefault();
-					mrapp.mobile.pane.history.pop();
+					navigator.app.clearHistory();
 					mrapp.mobile.navigate("#view-intro");
 //				} else if (settings.isLoggedIn() === false) {
 //					e.preventDefault();
-//					mrapp.mobile.pane.history.pop();
+//					navigator.app.clearHistory();
 //					mrapp.mobile.navigate("#view-login");
 				} else if (passcode.isInvalidPasscode()) {
 					e.preventDefault();
-					mrapp.mobile.pane.history.pop();
+					navigator.app.clearHistory();
 					mrapp.mobile.navigate("#view-lock");
 				}
 			}
 		},
 		onAfterShow: function (e) {
-
+			debugger;
+			navigator.app.clearHistory();
 		},
 		reset: function (e) {
 			settings.setDefault();

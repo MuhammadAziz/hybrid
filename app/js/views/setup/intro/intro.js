@@ -4,13 +4,20 @@ define([
     var model = mrapp.view({
         html: html,
         name: "intro",
+		firstShow: true,
+		onBeforeShow: function(e){
+			
+		},
+		onHide: function(){
+			
+		},
         onInit: function(e){
             
         },
         onAfterShow: function(e){
             
         },
-        click: function(){
+        next: function(){
             alert("test");
         }
     });

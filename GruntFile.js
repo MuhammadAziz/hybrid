@@ -146,7 +146,7 @@ module.exports = function (grunt) {
 							"css/**",
 							"bower_components/**",
 							"js/**",
-							"**/*.{jpg,png}",
+							"img/**/*.{jpg,png}",
 							"scss/**",
 							"**/*.html",
 							'!**/*.apk',
@@ -400,7 +400,7 @@ module.exports = function (grunt) {
 	grunt.registerTask("debug:ios", ["development", "shell:create_dir_debug", "shell:debug_ios"]);
 	
 	//Run this task if there is any error when running `grunt ios`
-	grunt.registerTask("redebug", ["shell:remove_temp", "shell:clean_dist", "debug:ios"]);
+	grunt.registerTask("reios", ["shell:remove_temp", "shell:clean_dist", "debug:ios"]);
 	
 	//build app in release mode
 	grunt.registerTask("release:android", ["build", "shell:create_dir_release", "appbuilder:android_release"]);

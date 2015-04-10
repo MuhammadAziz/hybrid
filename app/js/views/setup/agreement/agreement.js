@@ -6,6 +6,9 @@ define([
     var model = mrapp.view({
         html: html,
         name: "agreement",
+		onBeforeShow: function(e){
+			
+		},
         onInit: function(e){
             
         },

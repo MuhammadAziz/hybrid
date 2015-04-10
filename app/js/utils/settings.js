@@ -1,5 +1,5 @@
 define(["utils/base-utils"], function(BaseUtils){
-	var SETTINGS_KEY = "key_settings";
+	var SETTINGS_KEY = "settings";
 	var settings_default = {
 		FIRST_LAUNCH: true,
 		STATE_PASSCODE: true,

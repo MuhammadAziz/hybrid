@@ -1,11 +1,10 @@
 define(function(){
-//	var iv = CryptoJS.enc.Hex.parse("000102030405060708090a0b0c0d0e0f");
 	var BaseUtils = kendo.Class.extend({
 		saveToStorage: function (key, value) {
-			var currentValue = null;
+			var currentValue = null, that = this;
 			switch(true){
 				case typeof value === 'string':
-					localStorage.setItem(key, value);
+					localStorage.setItem(key, getEncrypted(that.encrpyt, value));
 					break;
 				case typeof value === 'object':
 					currentValue = this.getFromStorage(key);
@@ -18,11 +17,12 @@ define(function(){
 					break;
 			}
 			function save(value){
-				localStorage.setItem(key, JSON.stringify(value));
+				localStorage.setItem(key, getEncrypted(that.encrpyt, JSON.stringify(value)));
 			}
 		},
 		getFromStorage: function (key) {
-			var value = localStorage.getItem(key);
+			var value = localStorage.getItem(key), that = this;
+			value && (value = getDecrypted(that.decrypt, value));
 			try{
 				value = JSON.parse(value);
 			}catch (e){
@@ -40,17 +40,22 @@ define(function(){
 			}
 		},
 		encrpyt: function(passphrase, decrypted){
-//			var key = CryptoJS.enc.Hex.parse(passphrase);
 			var encrypted = CryptoJS.AES.encrypt(decrypted, passphrase);
 			return encrypted.toString();
 		},
 		decrypt: function(passphrase, encrypted){
-//			var key = CryptoJS.enc.Hex.parse(passphrase);
 			var decrypted = CryptoJS.AES.decrypt(encrypted, passphrase);
 			decrypted = CryptoJS.enc.Latin1.stringify(decrypted);
 			return decrypted;
 		}
 	});
+	var passKey = "U2FsdGVkX194LL7C9viD6Hc04eLuKhQFIv2FJ9Vj2Q9E/PbaMz3/mE/nBTA/+Ma2sDrqP/e8gwJwntgsGaFlwQ==";
+	function getEncrypted(encryptor, value){
+		return encryptor(passKey, value);
+	}
+	function getDecrypted(decryptor, value){
+		return decryptor(passKey, value);
+	}
 	return BaseUtils;
 });
 

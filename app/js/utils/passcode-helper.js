@@ -4,10 +4,9 @@ define([
 		function (BaseUtils, settings) {
 			var PHRASE = "SGVsbG8sIFdvnVBJbHJuigUIGUFT==cmxkIQ==";
 			var passcodeConst = {
-				KEY: "stored_passcode_key",
-				COOKIE_KEY: "cookie_passcode_key",
-				EXPIRED_IN_MINUTE: 1,
-				FLAG: "success_login"
+				KEY: "stored_passcode",
+				TIMESTAMP_KEY: "timestamp",
+				EXPIRED_IN_MINUTE: 1
 			};
 			var privateValue = {
 				getCurrentPasscode: function (guid) {
@@ -37,9 +36,7 @@ define([
 					} else {
 						var date = new Date();
 						date.setTime(date.getTime() + (passcodeConst.EXPIRED_IN_MINUTE * 60 * 1000));
-						var expired = date;
-						$.cookie(passcodeConst.COOKIE_KEY, null);
-						$.cookie(passcodeConst.COOKIE_KEY, passcodeConst.FLAG, {expires: expired});
+						this.saveToStorage(passcodeConst.TIMESTAMP_KEY, date.toJSON());
 					}
 				},
 				changePasscode: function () {
@@ -52,8 +49,10 @@ define([
 					settings.togglePasscode(value);
 				},
 				isInvalidPasscode: function () {
-					var cookie = $.cookie(passcodeConst.COOKIE_KEY);
-					return !cookie;
+					var timestamp, now = new Date(), expiry;
+					timestamp = this.getFromStorage(passcodeConst.TIMESTAMP_KEY);
+					expiry = new Date(timestamp);
+					return expiry < now;
 				},
 				isPasscodeEnabled: function () {
 					return settings.isPasscode() && this.isExist();
@@ -67,7 +66,7 @@ define([
 				},
 				reset: function () {
 					this.deleteFromStorage(passcodeConst.KEY);
-					$.removeCookie(passcodeConst.COOKIE_KEY);
+					Cookies.remove(passcodeConst.COOKIE_KEY);
 				}
 			});
 			return new utils();

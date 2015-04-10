@@ -3,12 +3,21 @@ define([
 ],function (passcode) {
 	var Listener = {
 		run: function () {
+			
+			document.addEventListener("resign", function () {
+				passcode.updatePasscodeCookie();
+			}, false);
+			
 			document.addEventListener("pause", function () {
 				passcode.updatePasscodeCookie();
-			});
+			}, false);
+			
 			document.addEventListener("error", function () {
 				alert("error occured");
 			});
+			document.addEventListener("backbutton", function (e) {
+				navigator.app.exitApp();
+			}, false);
 		}
 	};
 	return Listener;
