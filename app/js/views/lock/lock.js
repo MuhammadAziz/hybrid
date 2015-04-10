@@ -9,6 +9,9 @@ define([
         onInit: function(e){
             
         },
+		onBeforeShow: function(){
+			this.model.reset();
+		},
         onAfterShow: function(e){
 			
         },
@@ -32,6 +35,11 @@ define([
 			}else{
 				return false;
 			}
+		},
+		reset: function(){
+			this.set("formData", {
+				passCode: null
+			});
 		}
     });
     return model;
