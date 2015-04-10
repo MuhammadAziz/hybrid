@@ -21,7 +21,7 @@ define([
         unlock: function(){
             if(this.validate()){
 				passcode.updatePasscodeCookie();
-				mrapp.mobile.navigate("#view-home");
+				mrapp.mobile.navigate("#view-profile");
 			}else{
 				notif.alert("Please enter correct pin", null, "Invalid PIN", "Ok");
 			}

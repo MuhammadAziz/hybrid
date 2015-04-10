@@ -21,7 +21,7 @@ define([
         next: function(){
 			passcode.updatePasscodeCookie();
 			settings.disableFirstLaunch();
-            mrapp.mobile.navigate("#view-home");
+            mrapp.mobile.navigate("#view-profile");
         },
 		back: function(){
 			
