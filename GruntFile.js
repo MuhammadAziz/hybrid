@@ -137,6 +137,29 @@ module.exports = function (grunt) {
 //					}
 //				]
 //			},
+			android: {
+				files: [
+					{
+						expand: true,
+						cwd: buildDestination+"/",
+						src: [
+							"css/**",
+							"bower_components/**",
+							"js/**",
+							"**/*.{jpg,png}",
+							"scss/**",
+							"**/*.html",
+							'!**/*.apk',
+							"!.ab/**",
+							"!kendo",
+							"!App_Resources/**",
+							"!Plugins/**"
+						],
+						dest: debug,
+						dot: true
+					}
+				]
+			},
 			ios: {
 				files: [
 					{
@@ -369,7 +392,7 @@ module.exports = function (grunt) {
 	grunt.registerTask("development", ["lint", "sass", "sync:dist"]);
 	
 	//Livesync to device, note: need to build first
-	grunt.registerTask("android", ["development", "sync:android", "shell:reload_android"]);
+	grunt.registerTask("android", ["development", "copy:android", "shell:reload_android"]);
 	grunt.registerTask("ios", ["development" , "copy:ios", "shell:reload_ios"]);
 	
 	//build app in debug mode
