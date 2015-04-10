@@ -13,5 +13,5 @@
 /cert/
 .DS_Store
 /nbproject/private/
-/css/medirecords.css
+/app/css/medirecords.css
 **/*.map
