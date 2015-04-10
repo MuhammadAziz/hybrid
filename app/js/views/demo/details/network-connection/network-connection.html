@@ -1,9 +1,9 @@
-<div data-role="view" id="view-network-connection" class="content" data-model="App.model.networkConnection" data-init="App.events.networkConnection.onInit">
-    <header data-role="header">
-        <div data-role="navbar">
-            <a data-role="backbutton" data-icon="arrow-w" data-align="left">Back</a>
-        </div>
-    </header>
+<div data-role="view" id="view-network-connection" 
+     class="content" 
+     data-model="mrapp.model.networkConnection" 
+     data-init="mrapp.model.networkConnection.onInit"
+     data-layout="default-layout"
+     style="display: none;">
     <div class="content">
         <div class="action-area ch30">
             <button class="button dh" data-bind="click: checkConnection">Check connection</button>

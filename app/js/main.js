@@ -1,16 +1,23 @@
 // configure the path to the text plugin since it is not in the same directory
 // as require.js
 require.config({
+    baseUrl: 'js',
     paths: {
-        'text': '../bower_components/requirejs-text/text'
+        'text': '../bower_components/requirejs-text/text',
+        'data': 'data',
+        'views': 'views',
+        'utils': 'utils',
+        'layout': 'layout',
+        'base': 'base',
+        'setup': 'views/setup'
     }
 });
 
 define([
-	'mrapp', 
-	'views/base-view-model', 
-	'data/base-data-source'
-], function (mrapp) {
+	'base/base-view-model',
+	'base/base-data-source',
+	'mrapp'
+], function () {
     // if we are running on device, listen for cordova deviceready event
     if (kendo.mobileOs) {
         document.addEventListener('deviceready', function () {

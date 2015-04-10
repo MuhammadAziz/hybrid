@@ -1,9 +1,9 @@
-<div data-role="view" id="view-contacts" class="content" data-model="App.model.contacts" data-init="App.events.contacts.onInit">
-    <header data-role="header">
-        <div data-role="navbar">
-            <a data-role="backbutton" data-icon="arrow-w" data-align="left">Back</a>
-        </div>
-    </header>
+<div data-role="view" id="view-contacts" 
+     class="content" 
+     data-model="mrapp.model.contacts" 
+     data-init="mrapp.model.contacts.onInit"
+     data-layout="default-layout"
+     style="display: none;">
     <div class="row">
         <label class="col-xs-12">Name</label>
         <label class="col-xs-4">Given Name</label><input class="col-xs-8" type="text" placeholder="Name" data-bind="value: formData.name.givenName"/>

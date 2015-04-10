@@ -1,9 +1,9 @@
-<div data-role="view" id="view-barcode" class="content" data-model="App.model.barcode" data-init="App.events.barcode.onInit">
-    <header data-role="header">
-        <div data-role="navbar">
-            <a data-role="backbutton" data-icon="arrow-w" data-align="left">Back</a>
-        </div>
-    </header>
+<div data-role="view" id="view-barcode" 
+     class="content" 
+     data-model="mrapp.model.barcode" 
+     data-init="mrapp.model.barcode.onInit" 
+     data-layout="default-layout"
+     style="display: none;">
     <div class="action-area ch40">
         <button class="button dh dw" data-bind="click: scan">Scan</button>
     </div>

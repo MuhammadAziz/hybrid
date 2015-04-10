@@ -1,7 +1,6 @@
 define([
-	'text!views/demo-details/calendar/calendar.html',
-	'views/baseview'
-], function (html, View) {
+	'text!views/demo/details/calendar/calendar.html'
+], function (html) {
 	var calendar;
 //	var title = 'My Event Title';
 //	var location = 'My Event Location';
@@ -19,7 +18,13 @@ define([
 //	// add a few hours to the dates, JS will automatically update the date (+1 day) if necessary
 	startDate.setHours(startDate.getHours() + 2);
 	endDate.setHours(endDate.getHours() + 3);
-	var calendarView = kendo.observable({
+	var calendarView = mrapp.view({
+        html: html,
+        name: 'calendar',
+        onInit: function (e) {
+			calendarView.resultsField = document.getElementById("view-calendar-result");
+			calendar = window.plugins.calendar;
+		},
 		formData: {
 			startDate: startDate,
 			endDate: endDate,
@@ -111,12 +116,5 @@ define([
 			alert('Calendar error: ' + JSON.stringify(msg));
 		}
 	});
-	var events = {
-		onInit: function (e) {
-			calendarView.resultsField = document.getElementById("view-calendar-result");
-			calendar = window.plugins.calendar;
-		}
-	};
-	var view = new View('calendar', html, calendarView, events);
-	return view;
+	return calendarView;
 });

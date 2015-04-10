@@ -1,5 +1,5 @@
 define([
-	'text!views/profile/profile.html',
+	'text!./profile.html',
 	'utils/settings',
 	'utils/passcode-helper'
 ], function (html, settings, passcode) {
@@ -14,7 +14,6 @@ define([
 			if (mrapp.mobile) {
 				if (settings.isFirstLaunch()) {
 					e.preventDefault();
-					navigator.app.clearHistory();
 					mrapp.mobile.navigate("#view-intro");
 //				} else if (settings.isLoggedIn() === false) {
 //					e.preventDefault();
@@ -22,19 +21,16 @@ define([
 //					mrapp.mobile.navigate("#view-login");
 				} else if (passcode.isInvalidPasscode()) {
 					e.preventDefault();
-					navigator.app.clearHistory();
 					mrapp.mobile.navigate("#view-lock");
 				}
 			}
 		},
 		onAfterShow: function (e) {
-			debugger;
-			navigator.app.clearHistory();
+            
 		},
 		reset: function (e) {
 			settings.setDefault();
 			passcode.reset();
-			mrapp.mobile.pane.history.pop();
 			this.onBeforeShow(e);
 		}
 	});

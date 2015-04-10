@@ -1,4 +1,6 @@
-define(['mrapp'], function (mrapp) {
+define(function () {
+    debugger;
+    var mrapp = window.mrapp = window.mrapp || {model: {}};
 	var MediRecordsObservable = kendo.data.ObservableObject.extend({
 		init: function (options) {
 			kendo.data.ObservableObject.fn.init.call(this, options);

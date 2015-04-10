@@ -1,4 +1,6 @@
-define(['mrapp'], function(mrapp){
+define(function(){
+    debugger;
+    var mrapp = window.mrapp = window.mrapp || {};
 	var DataSource = kendo.data.DataSource.extend({
 		init: function(element, options){
 			var that = this;
@@ -16,4 +18,5 @@ define(['mrapp'], function(mrapp){
 	mrapp.data = function(options){
 		return new DataSource(options);
 	};
+    return DataSource;
 });

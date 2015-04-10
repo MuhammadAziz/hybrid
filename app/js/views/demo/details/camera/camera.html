@@ -1,9 +1,9 @@
-<div data-role="view" id="view-camera" class="content" data-model="App.model.camera" data-init="App.events.camera.onInit" style="display: none;">
-    <header data-role="header">
-        <div data-role="navbar">
-            <a data-role="backbutton" data-icon="arrow-w" data-align="left">Back</a>
-        </div>
-    </header>
+<div data-role="view" id="view-camera" 
+     class="content" 
+     data-model="mrapp.model.camera" 
+     data-init="mrapp.model.camera.onInit" 
+     data-layout="default-layout"
+     style="display: none;">
     <div class="row action-area ch50">
         <button class="col-xs-6 button dh" data-bind="click: getPhoto">Take Photo</button>
         <button class="col-xs-6 button dh" data-bind="click: getPhotoEdit">Take Editable Photo (iOS only)</button>

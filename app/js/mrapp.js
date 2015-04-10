@@ -1,14 +1,17 @@
 define([
     'utils/listeners',
-    'views/setup/intro/intro',
-    'views/setup/token/token',
-    'views/setup/pin/pin',
-    'views/setup/agreement/agreement',
+    'setup/intro/intro',
+    'setup/token/token',
+    'setup/pin/pin',
+    'setup/agreement/agreement',
     'views/lock/lock',
     'views/home/home',
     'views/favorite/favorite',
     'views/more/more',
-    'views/profile/profile'
+    'views/profile/profile',
+    'views/demo/demo',
+    'views/demo/details/barcode/barcode',
+    'views/demo/details/calendar/calendar'
 ], function (listeners) {
     // create a global container object
     var mrapp = window.mrapp = window.mrapp || {};

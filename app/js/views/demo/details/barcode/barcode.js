@@ -1,9 +1,13 @@
 define([
-	'text!views/demo-details/barcode/barcode.html',
-	'views/baseview'
-], function (html, View) {
-	var barcode = kendo.observable({
+	'text!views/demo/details/barcode/barcode.html'
+], function (html) {
+	var barcode = mrapp.view({
+        html: html,
+        name: 'barcode',
 		resultsField: null,
+        onInit: function (e) {
+			barcode.resultsField = document.getElementById("view-barcode-result");
+		},
 		scan: function (e) {
 			this._scan();
 		},
@@ -29,11 +33,5 @@ define([
 			that.resultsField.innerHTML = currentMessage + message + '<br />';
 		}
 	});
-	var events = {
-		onInit: function (e) {
-			barcode.resultsField = document.getElementById("view-barcode-result");
-		}
-	};
-	var view = new View('barcode', html, barcode, events);
-	return view;
+    return barcode;
 });

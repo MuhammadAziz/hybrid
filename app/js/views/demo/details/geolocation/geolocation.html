@@ -1,12 +1,9 @@
 <div data-role="view" id="view-geolocation" class="content" 
-     data-model="App.model.geolocation" 
-     data-init="App.events.geolocation.onInit" 
-     data-show="App.events.geolocation.onAfterShow">
-    <header data-role="header">
-        <div data-role="navbar">
-            <a data-role="backbutton" data-icon="arrow-w" data-align="left">Back</a>
-        </div>
-    </header>
+     data-model="mrapp.model.geolocation" 
+     data-init="mrapp.model.geolocation.onInit" 
+     data-show="mrapp.model.geolocation.onAfterShow"
+     data-layout="default-layout"
+     style="display: none;">
     <div class="row">
         <div class="col-xs-4"><button class="btn" data-bind="click: showCurrentLocation">Where am I?</button></div>
         <div class="col-xs-4"><button class="btn" data-bind="click: gotoAsterx">Go to AsteRx</button></div>
