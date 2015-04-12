@@ -103,6 +103,7 @@ define(function () {
             });
         }
     }),
+    //Override event
     setAugmentation = function(target){
         var fn = MediRecordsObservable.fn;
         target && $.each(target, function(key, value){
