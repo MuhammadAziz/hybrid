@@ -14,7 +14,8 @@ define([
 			
 			document.addEventListener("error", function () {
 				alert("error occured");
-			});
+			}, false);
+            
 			document.addEventListener("backbutton", function (e) {
                 //TODO:
                 //if view contain data-role="backbutton"

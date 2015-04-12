@@ -1,12 +1,13 @@
 define([
 	'text!views/setup/intro/intro.html'
 ], function (html) {
-    var model = mrapp.view({
+    var context,
+    model = mrapp.view({
         html: html,
         name: "intro",
 		firstShow: true,
 		onBeforeShow: function(e){
-			
+			context = this.model;
 		},
 		onHide: function(){
 			
@@ -17,8 +18,8 @@ define([
         onAfterShow: function(e){
             
         },
-        next: function(){
-            alert("test");
+        next: function(e){
+            mrapp.mobile.navigate("#view-token");
         }
     });
     return model;

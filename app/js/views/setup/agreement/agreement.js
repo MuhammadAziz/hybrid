@@ -24,7 +24,7 @@ define([
             mrapp.mobile.navigate("#view-profile");
         },
 		back: function(){
-			
+			mrapp.mobile.navigate("#view-intro");
 		}
     });
     return model;

@@ -1,5 +1,4 @@
 define(function(){
-    debugger;
     var mrapp = window.mrapp = window.mrapp || {};
 	var DataSource = kendo.data.DataSource.extend({
 		init: function(element, options){
