@@ -1,5 +1,5 @@
 define([
-    'text!views/setup/token/token.html'
+    'text!./token.html'
 ], function (html) {
     var notif = navigator.notification, DUMMY_VALID_TOKEN = 'token',
     model = mrapp.view({

@@ -1,5 +1,5 @@
 define([
-	'text!views/lock/lock.html',
+	'text!./lock.html',
 	'utils/passcode-helper'
 ], function (html, passcode) {
     var notif = navigator.notification;
@@ -10,7 +10,7 @@ define([
             
         },
 		onBeforeShow: function(){
-			this.model.reset();
+			// this.model.reset();
 		},
         onAfterShow: function(e){
 			
@@ -37,9 +37,7 @@ define([
 			}
 		},
 		reset: function(){
-			this.set("formData", {
-				passCode: null
-			});
+			model.resetForm("formData");
 		}
     });
     return model;

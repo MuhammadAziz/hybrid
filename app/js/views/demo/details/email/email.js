@@ -1,8 +1,12 @@
 define([
-	'text!views/demo-details/email/email.html',
-	'views/baseview'
-], function (html, View) {
-	var email = kendo.observable({
+	'text!./email.html'
+], function (html) {
+	var email = mrapp.view({
+		html: html,
+		name: 'email',
+		onInit: function (e) {
+			email.resultsField = document.getElementById("view-email-result");
+		},
 		resultsField: null,
 		send: function (e) {
 			var that = this;
@@ -23,11 +27,6 @@ define([
 			that.resultsField.innerHTML = currentMessage + message + '<br />';
 		}
 	});
-	var events = {
-		onInit: function (e) {
-			email.resultsField = document.getElementById("view-email-result");
-		}
-	};
-	var view = new View('email', html, email, events);
-	return view;
+	
+	return email;
 });

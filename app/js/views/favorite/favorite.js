@@ -1,5 +1,5 @@
 define([
-	'text!views/favorite/favorite.html'
+	'text!./favorite.html'
 ], function (html) {
     var model = mrapp.view({
         html: html,

@@ -1,8 +1,14 @@
 define([
-	'text!views/demo-details/camera/camera.html',
-	'views/baseview'
-], function (html, View) {
-	var cameraApp = kendo.observable({
+	'text!./camera.html'
+], function (html) {
+	var cameraApp = mrapp.view({
+		html: html,
+		name: 'camera',
+		onInit: function(e){
+			cameraApp._pictureSource = navigator.camera.PictureSourceType;
+			cameraApp._destinationType = navigator.camera.DestinationType;
+			cameraApp._target = document.getElementById('view-camera-result');
+		},
 		_pictureSource: null,
 		_destinationType: null,
 		getPhoto: function(e){
@@ -88,13 +94,6 @@ define([
 			alert(message);
 		}
 	});
-	var events = {
-		onInit: function(e){
-			cameraApp._pictureSource = navigator.camera.PictureSourceType;
-			cameraApp._destinationType = navigator.camera.DestinationType;
-			cameraApp._target = document.getElementById('view-camera-result');
-		}
-	};
-	var view = new View('camera', html, cameraApp, events);
-	return view;
+
+	return cameraApp;
 });

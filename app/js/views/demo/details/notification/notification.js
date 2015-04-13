@@ -1,8 +1,25 @@
 define([
-	'text!views/demo-details/notification/notification.html',
-	'views/baseview'
-], function (html, View) {
-	var notification = kendo.observable({
+	'text!./notification.html'
+], function (html) {
+	var notification = mrapp.view({
+		html: html,
+		name: 'notification',
+		onInit: function (e) {
+			// set some global defaults for all local notifications
+			window.plugin.notification.local.setDefaults({
+				autoCancel: true // removes the notification from notification centre when clicked
+			});
+			// triggered when a notification was clicked outside the app (background)
+			window.plugin.notification.local.onclick = function (id, state, json) {
+				var message = 'ID: ' + id + (json === '' ? '' : '\nData: ' + json);
+			};
+			// triggered when a notification is executed while using the app (foreground)
+			// on Android this may be triggered even when the app started by clicking a notification
+			window.plugin.notification.local.ontrigger = function (id, state, json) {
+				var message = 'ID: ' + id + (json === '' ? '' : '\nData: ' + json);
+				navigator.notification.alert(message, null, 'Notification received while the app was in the foreground', 'Close');
+			};
+		},
 		showToast: function (text) {
 			setTimeout(function () {
 //				window.plugins.toast.showShortBottom(text);
@@ -90,24 +107,5 @@ define([
 			}
 		}
 	});
-	var events = {
-		onInit: function (e) {
-			// set some global defaults for all local notifications
-			window.plugin.notification.local.setDefaults({
-				autoCancel: true // removes the notification from notification centre when clicked
-			});
-			// triggered when a notification was clicked outside the app (background)
-			window.plugin.notification.local.onclick = function (id, state, json) {
-				var message = 'ID: ' + id + (json === '' ? '' : '\nData: ' + json);
-			};
-			// triggered when a notification is executed while using the app (foreground)
-			// on Android this may be triggered even when the app started by clicking a notification
-			window.plugin.notification.local.ontrigger = function (id, state, json) {
-				var message = 'ID: ' + id + (json === '' ? '' : '\nData: ' + json);
-				navigator.notification.alert(message, null, 'Notification received while the app was in the foreground', 'Close');
-			};
-		}
-	};
-	var view = new View('notification', html, notification, events);
-	return view;
+	return notification;
 });

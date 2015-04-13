@@ -1,5 +1,5 @@
 define([
-	'text!views/more/more.html'
+	'text!./more.html'
 ], function (html) {
     var model = mrapp.view({
         html: html,

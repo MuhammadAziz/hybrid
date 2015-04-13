@@ -9,7 +9,8 @@ require.config({
         'utils': 'utils',
         'layout': 'layout',
         'base': 'base',
-        'setup': 'views/setup'
+        'setup': 'views/setup',
+        'common': 'views/common'
     }
 });
 

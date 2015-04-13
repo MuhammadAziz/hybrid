@@ -1,5 +1,5 @@
 define([
-	'text!views/demo/details/calendar/calendar.html'
+	'text!./calendar.html'
 ], function (html) {
 	var calendar;
 //	var title = 'My Event Title';

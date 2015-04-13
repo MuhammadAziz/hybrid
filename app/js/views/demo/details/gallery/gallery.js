@@ -1,8 +1,14 @@
 define([
-	'text!views/demo-details/gallery/gallery.html',
-	'views/baseview'
-], function (html, View) {
-	var galleryApp = kendo.observable({
+	'text!./gallery.html'
+], function (html) {
+	var galleryApp = mrapp.view({
+		html: html,
+		name: 'gallery',
+		onInit: function(e){
+			galleryApp._pictureSource = navigator.camera.PictureSourceType;
+			galleryApp._destinationType = navigator.camera.DestinationType;
+			galleryApp._target = document.getElementById('view-gallery-result');
+		},
 		_target: null,
 		_pictureSource: null,
 		_destinationType: null,
@@ -87,13 +93,6 @@ define([
 			alert(message);
 		}
 	});
-	var events = {
-		onInit: function(e){
-			galleryApp._pictureSource = navigator.camera.PictureSourceType;
-			galleryApp._destinationType = navigator.camera.DestinationType;
-			galleryApp._target = document.getElementById('view-gallery-result');
-		}
-	};
-	var view = new View('gallery', html, galleryApp, events);
-	return view;
+
+	return galleryApp;
 });

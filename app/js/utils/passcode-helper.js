@@ -66,7 +66,6 @@ define([
 				},
 				reset: function () {
 					this.deleteFromStorage(passcodeConst.KEY);
-					Cookies.remove(passcodeConst.COOKIE_KEY);
 				}
 			});
 			return new utils();

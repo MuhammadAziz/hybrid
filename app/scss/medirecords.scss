@@ -2,10 +2,12 @@
     -webkit-tap-highlight-color: rgba(0,0,0,0); // make transparent link selection, adjust last value opacity 0 to 1.0 
 }
 
+@import "shadows";
+
 #body {
+    @import "colors";
     @import "override";
     @import "buttons";
-    @import "colors";
     @import "widgets";
     @import "extendable";
     @import "icons";

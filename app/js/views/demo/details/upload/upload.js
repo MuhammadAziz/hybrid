@@ -1,52 +1,19 @@
 define([
-	'text!views/demo-details/upload/upload.html',
-	'views/baseview',
-	'views/file-browser/file-browser'
-], function (html, View, fileBrowser) {
-	var uploadApp = kendo.observable({
-//		run: function (uri, fileName, folderName) {
-//			var that = this, filePath = "";
-//
-//			document.getElementById("download").addEventListener("click", function () {
-//				that.getFilesystem(
-//						function (fileSystem) {
-//							console.log("gotFS");
-//
-//							if (device.platform === "Android") {
-//								that.getFolder(fileSystem, folderName, function (folder) {
-//									filePath = folder.toURL() + "\/" + fileName;
-//									that.transferFile(uri, filePath)
-//								}, function () {
-//									console.log("failed to get folder");
-//								});
-//							} else {
-//								var filePath;
-//								var urlPath = fileSystem.root.toURL();
-//								if (device.platform == "Win32NT") {
-//									urlPath = fileSystem.root.fullPath;
-//								}
-//								if (parseFloat(device.cordova) <= 3.2) {
-//									filePath = urlPath.substring(urlPath.indexOf("/var")) + "\/" + fileName;
-//								} else {
-//									filePath = urlPath + "\/" + fileName;
-//								}
-//								that.transferFile(uri, filePath)
-//							}
-//						},
-//						function () {
-//							console.log("failed to get filesystem");
-//						}
-//				);
-//			});
-//
-//			document.getElementById("upload").addEventListener("click", that.uploadFile);
-//		},
+	'text!./upload.html',
+	'common/file-browser/file-browser'
+], function (html, fileBrowser) {
+	var uploadApp = mrapp.view({
+		html: html,
+		name: 'upload',
+		onInit: function (e) {
+
+		},
 		getFilesystem: function (success, fail) {
 			window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
 			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, success, fail);
 		},
 		getFolder: function (fileSystem, folderName, success, fail) {
-			fileSystem.root.getDirectory(folderName, {create: true, exclusive: false}, success, fail)
+			fileSystem.root.getDirectory(folderName, {create: true, exclusive: false}, success, fail);
 		},
 //		transferFile: function (uri, filePath) {
 //			var transfer = new FileTransfer();
@@ -181,10 +148,5 @@ define([
 			window.resolveLocalFileSystemURL(path, gotFile, error);
 		}
 	});
-	var events = {
-		onInit: function (e) {
-		}
-	};
-	var view = new View('upload', html, uploadApp, events);
-	return view;
+	return uploadApp;
 });

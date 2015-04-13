@@ -1,5 +1,5 @@
 define([
-	'text!views/setup/agreement/agreement.html',
+	'text!./agreement.html',
 	'utils/settings',
 	'utils/passcode-helper'
 ], function (html, settings, passcode) {

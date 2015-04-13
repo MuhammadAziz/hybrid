@@ -1,8 +1,12 @@
 define([
-	'text!views/demo-details/contacts/contacts.html',
-	'views/baseview'
-], function (html, View) {
-	var contactsView = kendo.observable({
+	'text!./contacts.html'
+], function (html) {
+	var contactsView = mrapp.view({
+		html: html,
+		name: 'contacts',
+		onInit: function (e) {
+			contactsView.resultsField = document.getElementById("view-contacts-result");
+		},
 		contact: null,
 		result: null,
 		setResults: function (value) {
@@ -64,7 +68,7 @@ define([
 			// to the original contact, and retrieve a reference to a new one.
 
 			that.contact = that._constructContact();
-			debugger;
+
 //			var name = new ContactName();
 //			name.givenName = "Telerik AppBuilder Test";
 //			name.familyName = "Sample Contact";
@@ -203,11 +207,6 @@ define([
 			that.setResults("Remove error = " + contactError.code);
 		}
 	});
-	var events = {
-		onInit: function (e) {
-			contactsView.resultsField = document.getElementById("view-contacts-result");
-		}
-	};
-	var view = new View('contacts', html, contactsView, events);
-	return view;
+
+	return contactsView;
 });

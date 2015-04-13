@@ -18,20 +18,17 @@
     width: 100%;
 }
 
-.km-flat .km-button{
-    &.mr-green{
-        background-color: #97C842;
-        color: white;
+.km-footer{
+    background: rgba(255,255,255,0.5);
+    .km-icon, .km-text{
+        color: #333;
     }
-    &.mr-blue{
-        background-color: #40A9C8;
-        color: white;
+    .km-state-active{
+        background: $color-mrapp-blue;
     }
-    &.mr-grey{
-        background-color: #CCC;
-        color: white;
-    }
-    &.mr-shadow{
-        box-shadow: 0px 4px 7px 0px #333;
-        }
 }
+
+.km-navbar{
+    min-height: 10vh;
+}
+

@@ -1,5 +1,5 @@
 define([
-	'text!views/demo/details/barcode/barcode.html'
+	'text!./barcode.html'
 ], function (html) {
 	var barcode = mrapp.view({
         html: html,

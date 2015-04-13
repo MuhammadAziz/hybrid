@@ -1,0 +1,21 @@
+<div data-role="view" id="view-storage" 
+	 data-title="Offline Storage"
+     data-model="mrapp.model.storage" 
+     data-init="mrapp.model.storage.onInit" 
+     data-after-show="mrapp.model.storage.onAfterShow"
+     data-layout="default-layout"
+     style="display: none;">
+     <div class="row">
+     	<div class="col-xs-4">
+     		<a data-role="button" class="btn mr-button mr-green mr-shadow" data-bind="click: add">Add</a>
+     	</div>
+     	<div class="col-xs-8">
+     		<input placeholder="Name" type="text" data-bind="value: formData.name">
+     	</div>
+     </div>
+    <ul data-role="listview" data-bind="source: storageDatasource" data-template="view-storage-template"></ul>
+</div>
+
+<script type="text/x-kendo-template" id="view-storage-template">
+   <a>#: name #</a>
+</script>

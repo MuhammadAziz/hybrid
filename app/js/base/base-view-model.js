@@ -101,7 +101,10 @@ define(function () {
             $.each(arguments, function (i, val) {
                 /^form/i.test(val) && validate(val);
             });
-        }
+        },
+        toast: function (text) {
+            window.plugins.toast.showShortBottom(text);
+        },
     }),
     //Override event
     setAugmentation = function(target){

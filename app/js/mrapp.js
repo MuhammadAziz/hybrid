@@ -12,9 +12,7 @@ define([
     'views/favorite/favorite',
     'views/more/more',
     'views/profile/profile',
-    'views/demo/demo',
-    'views/demo/details/barcode/barcode',
-    'views/demo/details/calendar/calendar'
+    'views/demo/demo'
 ], function (listeners) {
     // create a global container object
     var mrapp = window.mrapp = window.mrapp || {};

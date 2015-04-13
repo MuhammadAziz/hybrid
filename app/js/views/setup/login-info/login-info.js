@@ -1,5 +1,5 @@
 define([
-	'text!views/setup/login-info/login-info.html'
+	'text!./login-info.html'
 ], function (html) {
     var model = mrapp.view({
         html: html,

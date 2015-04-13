@@ -1,8 +1,12 @@
 define([
-	'text!views/demo-details/network-connection/network-connection.html',
-	'views/baseview'
-], function (html, View) {
-	var networkConnection = kendo.observable({
+	'text!./network-connection.html'
+], function (html) {
+	var networkConnection = mrapp.view({
+		html: html,
+		name: 'networkConnection',
+		onInit: function (e) {
+			networkConnection.resultsField = document.getElementById("view-network-connection-result");
+		},
 		checkConnection: function () {
 			var that = this,
 					networkState = navigator.connection.type,
@@ -15,11 +19,6 @@ define([
 			currentTimeDiv.textContent = now;
 		}
 	});
-	var events = {
-		onInit: function (e) {
-			networkConnection.resultsField = document.getElementById("view-network-connection-result");
-		}
-	};
-	var view = new View('networkConnection', html, networkConnection, events);
-	return view;
+	
+	return networkConnection;
 });

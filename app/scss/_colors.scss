@@ -1,18 +1,20 @@
+$color-mrapp-green: #97C842;
+$color-mrapp-blue: #40A9C8;
+$color-mrapp-grey: #CCC;
+$color-mrapp-white: #FFF;
+
 .mr-green{
     background: none;
-    background-color: #97C842;
-    color: white;
+    background-color: $color-mrapp-green;
+    color: $color-mrapp-white;
 }
 .mr-blue{
     background: none;
     background-color: #40A9C8;
-    color: white;
+    color: $color-mrapp-white;
 }
 .mr-grey{
     background: none;
     background-color: #CCC;
-    color: white;
-}
-.mr-shadow{
-    box-shadow: 0px 4px 7px 0px #333;
+    color: $color-mrapp-white;
 }

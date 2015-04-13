@@ -1,6 +1,18 @@
 define([
-	'text!views/demo/demo.html',
-	'data/demo/demo-datasource'
+	'text!./demo.html',
+	'data/demo/demo-datasource',
+    'views/demo/details/barcode/barcode',
+    'views/demo/details/calendar/calendar',
+    'views/demo/details/camera/camera',
+    'views/demo/details/contacts/contacts',
+    'views/demo/details/email/email',
+    'views/demo/details/gallery/gallery',
+    'views/demo/details/geolocation/geolocation',
+    'views/demo/details/network-connection/network-connection',
+    'views/demo/details/notification/notification',
+    'views/demo/details/sms/sms',
+    'views/demo/details/upload/upload',
+    'views/demo/details/storage/storage'
 ], function (html, todoDatasource) {
 	var view, navbar, category;
     var model = mrapp.view({

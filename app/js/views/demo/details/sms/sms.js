@@ -1,9 +1,13 @@
 define([
-	'text!views/demo-details/sms/sms.html',
-	'views/baseview'
-], function (html, View) {
-	var smsModule = kendo.observable({
+	'text!./sms.html'
+], function (html) {
+	var smsModule = mrapp.view({
+		html: html,
+		name: 'sms',
 		resultsField: null,
+		onInit: function (e) {
+			
+		},
 		send: function (e) {
 			var number = this.formData.number;
 			var message = this.formData.message;
@@ -31,11 +35,5 @@ define([
 			that.resultsField.innerHTML = currentMessage + message + '<br />';
 		}
 	});
-	var events = {
-		onInit: function (e) {
-			
-		}
-	};
-	var view = new View('sms', html, smsModule, events);
-	return view;
+	return smsModule;
 });

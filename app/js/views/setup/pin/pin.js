@@ -1,5 +1,5 @@
 define([
-    'text!views/setup/pin/pin.html',
+    'text!./pin.html',
     'utils/passcode-helper',
     'utils/settings'
 ], function (html, passcodeHelper, settings) {

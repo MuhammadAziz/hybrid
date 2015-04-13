@@ -1,0 +1,19 @@
+<div data-role="modalview" id="view-file-browser" 
+    data-model="mrapp.model.FileBrowser" 
+    data-init="mrapp.model.FileBrowser.onInit" 
+    data-width="80%" data-height="90%">
+    <div data-role="header">
+        <div data-role="navbar">
+            <span data-role="view-title">Pick File</span>
+            <a data-role="button" data-bind="click: close" data-align="right" data-icon="close"></a>
+        </div>
+    </div>
+    <ul data-role="listview" data-bind="source: fileDatasource" data-template="view-file-browser-template"></ul>
+</div>
+<script type="text/x-kendo-template" id="view-file-browser-template">
+    #if(isFile){#
+        <a data-bind="click: selectFile">[f] #: name #</a>
+    #}else{#
+        <a data-bind="click: selectFile">[d] #: name #</a>
+    #}#
+</script>

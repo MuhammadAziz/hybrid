@@ -1,5 +1,44 @@
 define(function(){
 	var BaseUtils = kendo.Class.extend({
+		saveToSession: function(key, value){
+			var currentValue = null, that = this;
+			switch(true){
+				case typeof value === 'string':
+					sessionStorage.setItem(key, value);
+					break;
+				case typeof value === 'object':
+					currentValue = this.getFromStorage(key);
+					if(currentValue){
+						$.extend(true, currentValue, value);
+						save(currentValue);
+					}else{
+						save(value);
+					}
+					break;
+			}
+			function save(value){
+				sessionStorage.setItem(key, JSON.stringify(value));
+			}
+		},
+		getFromSession: function (key) {
+			var value = sessionStorage.getItem(key), that = this;
+			// value && (value = getDecrypted(that.decrypt, value));
+			try{
+				value = JSON.parse(value);
+			}catch (e){
+				//is string?
+			}
+			return value;
+		},
+		deleteFromSession: function(key, objKey){
+			var currentValue = this.getFromStorage(key);
+			if(typeof currentValue === 'object' && objKey){
+				delete currentValue[objKey];
+				sessionStorage.setItem(key, JSON.stringify(currentValue));
+			}else{
+				sessionStorage.removeItem(key);
+			}
+		},
 		saveToStorage: function (key, value) {
 			var currentValue = null, that = this;
 			switch(true){

@@ -1,5 +1,5 @@
 define([
-	'text!views/setup/intro/intro.html'
+	'text!./intro.html'
 ], function (html) {
     var context,
     model = mrapp.view({

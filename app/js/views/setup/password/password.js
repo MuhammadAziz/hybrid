@@ -1,5 +1,5 @@
 define([
-	'text!views/setup/password/password.html'
+	'text!./password.html'
 ], function (html) {
     var notif = navigator.notification,
     model = mrapp.view({

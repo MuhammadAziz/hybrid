@@ -14,7 +14,8 @@ define(function () {
 			{title: 'Email', category: 'MediRecords Demo', target:'email'},
 			{title: 'Upload', category: 'MediRecords Demo', target:'upload'},
 			{title: 'Calendar', category: 'MediRecords Demo', target:'calendar'},
-			{title: 'Contacts', category: 'MediRecords Demo', target:'contacts'}
+			{title: 'Contacts', category: 'MediRecords Demo', target:'contacts'},
+			{title: 'Storage', category: 'MediRecords Demo', target:'storage'}
 		]
 	});
 	return todoDatasource;

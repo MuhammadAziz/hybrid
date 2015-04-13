@@ -1,9 +1,17 @@
 define([
-	'text!views/demo-details/geolocation/geolocation.html',
-	'views/baseview'
-], function (html, View) {
+	'text!./geolocation.html'
+], function (html) {
 	var map = null, _mapCanvas;
-	var geolocation = kendo.observable({
+	var geolocation = mrapp.view({
+		html: html,
+		name: 'geolocation',
+		onInit: function (e) {
+			var view = e.view.element;
+			_mapCanvas = view.find("#view-geolocation-map-canvas")[0];
+		},
+		onAfterShow: function (e) {
+			geolocation.initMaps();
+		},
 		initMaps: function () {
 			var that = this;
 			map = plugin.google.maps.Map.getMap();
@@ -272,15 +280,6 @@ define([
 			});
 		}
 	});
-	var events = {
-		onInit: function (e) {
-			var view = e.view.element;
-			_mapCanvas = view.find("#view-geolocation-map-canvas")[0];
-		},
-		onAfterShow: function (e) {
-			geolocation.initMaps();
-		}
-	};
-	var view = new View('geolocation', html, geolocation, events);
-	return view;
+
+	return geolocation;
 });
