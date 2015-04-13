@@ -14,21 +14,20 @@ require.config({
 });
 
 define([
-	'base/base-view-model',
-	'base/base-data-source',
-	'mrapp'
-], function () {
+    'base/base-view-model',
+    'base/base-data-source',
+    'mrapp'
+], function() {
     // if we are running on device, listen for cordova deviceready event
     if (kendo.mobileOs) {
-        document.addEventListener('deviceready', function () {
+        document.addEventListener('deviceready', function() {
             // initialize mrapplication
             mrapp.init();
 
             // hide the native spash screen
             navigator.splashscreen.hide();
         }, false);
-    }
-    else {
+    } else {
         // we are running on the web (prolly debug) so just show the mrapp
         mrapp.init();
     }
