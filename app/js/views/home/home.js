@@ -11,18 +11,18 @@ define([
             $home = e.sender.element;
         },
         onBeforeShow: function (e) {
-            if (mrapp.mobile) {
-                if (settings.isFirstLaunch()) {
-                    e.preventDefault();
-                    mrapp.mobile.navigate("#view-intro");
-//				} else if (settings.isLoggedIn() === false) {
-//					e.preventDefault();
-//					mrapp.mobile.navigate("#view-login");
-                } else if (passcode.isInvalidPasscode()) {
-                    e.preventDefault();
-                    mrapp.mobile.navigate("#view-lock");
-                }
-            }
+//             if (mrapp.mobile) {
+//                 if (settings.isFirstLaunch()) {
+//                     e.preventDefault();
+//                     mrapp.mobile.navigate("#view-intro");
+// //				} else if (settings.isLoggedIn() === false) {
+// //					e.preventDefault();
+// //					mrapp.mobile.navigate("#view-login");
+//                 } else if (passcode.isInvalidPasscode()) {
+//                     e.preventDefault();
+//                     mrapp.mobile.navigate("#view-lock");
+//                 }
+//             }
         },
         onAfterShow: function (e) {
 

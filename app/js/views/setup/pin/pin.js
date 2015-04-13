@@ -8,10 +8,11 @@ define([
         html: html,
         name: "pin",
         isConfirm: false,
-        onBeforeShow: function (e) {
-            if (passcodeHelper.isExist()) {
+        onBeforeShow: function(e){
+            if(settings.isSetupComplete()){
                 e.preventDefault();
-            } else {
+            }else{
+                e.isSetup = true;
                 model.reset();
             }
         },
@@ -74,20 +75,16 @@ define([
         skip: function(){
             //TODO: skip validation, hint: passcode can be skipped only if still in first launch
             passcodeHelper.togglePasscode(false);
-            if (settings.isFirstLaunch()) {
-                mrapp.mobile.navigate("#view-agreement");
-            } else {
+            if (settings.isSetupComplete()) {
                 mrapp.mobile.navigate("#:back");
+            } else {
+                mrapp.mobile.navigate("#view-agreement");
             }
         },
         save: function (data) {
             passcodeHelper.savePasscode(data);
             passcodeHelper.togglePasscode(true);
-            if (settings.isFirstLaunch()) {
-                mrapp.mobile.navigate("#view-agreement");
-            } else {
-                mrapp.mobile.navigate("#:back");
-            }
+            mrapp.mobile.navigate("#view-agreement");
         },
         isPasscodeValid: function () {
             var data = model.formData, confirm = model.formDataConfirm;

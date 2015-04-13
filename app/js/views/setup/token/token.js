@@ -1,10 +1,18 @@
 define([
-    'text!./token.html'
-], function (html) {
+    'text!./token.html',
+    'utils/settings'
+], function (html, settings) {
     var notif = navigator.notification, DUMMY_VALID_TOKEN = 'token',
     model = mrapp.view({
         html: html,
         name: "token",
+        onBeforeShow: function(e){
+            if(settings.isSetupComplete()){
+                e.preventDefault();
+            }else{
+                e.isSetup = true;
+            }
+        },
         onInit: function (e) {
             
         },

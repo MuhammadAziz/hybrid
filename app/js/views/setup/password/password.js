@@ -1,10 +1,18 @@
 define([
-	'text!./password.html'
-], function (html) {
+	'text!./password.html',
+    'utils/settings',
+], function (html, settings) {
     var notif = navigator.notification,
     model = mrapp.view({
         html: html,
         name: "password",
+        onBeforeShow: function(e){
+            if(settings.isSetupComplete()){
+                e.preventDefault();
+            }else{
+                e.isSetup = true;
+            }
+        },
         onInit: function(e){
 
         },

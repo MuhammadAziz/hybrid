@@ -1,4 +1,4 @@
-define(function () {
+define(['utils/settings'], function (settings) {
     var mrapp = window.mrapp = window.mrapp || {model: {}},
     MediRecordsObservable = kendo.data.ObservableObject.extend({
         init: function (options) {
@@ -26,21 +26,20 @@ define(function () {
             setAugmentation(that);
         },
         onBeforeShow: function (e) {
-            //TODO: add view validation
-            /*
-            if(setup_incomplete && passcode_invalid){
-                e.preventDefault();
-                redirect: intro
+            if(e.isDefaultPrevented() === false && !e.isSetup){
+                if(!settings.isSetupComplete()){
+                    e.preventDefault();
+                    mrapp.mobile.navigate("#view-intro");
+                }else
+                // if(!settings.isLoggedIn()){
+                //     e.preventDefault();
+                //     mrapp.mobile.navigate("#view-login");
+                // }else
+                if(!settings.isPasscodeValid()){
+                    e.preventDefault();
+                    mrapp.mobile.navigate("#view-lock");
+                }
             }
-            if(setup_complete && passcode_valid){
-                e.preventDefault();
-                no: home --> setup
-            }
-            if(setup_complete && passcode_invalid){
-                e.preventDefault();
-                redirect: lock
-            }
-            //*/
         },
         onInit: function (e) {
 
@@ -122,6 +121,7 @@ define(function () {
             }
         });
     };
+    mrapp.model = mrapp.model || {};
     mrapp.view = function (options) {
         return new MediRecordsObservable(options);
     };

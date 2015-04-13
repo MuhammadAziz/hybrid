@@ -1,9 +1,17 @@
 define([
-	'text!./login-info.html'
-], function (html) {
+	'text!./login-info.html',
+    'utils/settings',
+], function (html, settings) {
     var model = mrapp.view({
         html: html,
         name: "loginInfo",
+        onBeforeShow: function(e){
+            if(settings.isSetupComplete()){
+                e.preventDefault();
+            }else{
+                e.isSetup = true;
+            }
+        },
         onInit: function(e){
             
         },

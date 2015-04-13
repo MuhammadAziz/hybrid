@@ -4,8 +4,8 @@ define([
 		function (BaseUtils, settings) {
 			var PHRASE = "SGVsbG8sIFdvnVBJbHJuigUIGUFT==cmxkIQ==";
 			var passcodeConst = {
-				KEY: "stored_passcode",
-				TIMESTAMP_KEY: "timestamp",
+				KEY: "settings:passcode",
+				TIMESTAMP_KEY: "settings:timestamp",
 				EXPIRED_IN_MINUTE: 1
 			};
 			var privateValue = {
@@ -55,10 +55,10 @@ define([
 					return expiry < now;
 				},
 				isPasscodeEnabled: function () {
-					return settings.isPasscode() && this.isExist();
+					return settings.isPasscodeValid() && this.isExist();
 				},
 				isPasscodeDisabled: function () {
-					return settings.isPasscode() === false && this.isExist() === false;
+					return settings.isPasscodeValid() === false && this.isExist() === false;
 				},
 				isExist: function () {
 					var code = privateValue.getCurrentPasscode();

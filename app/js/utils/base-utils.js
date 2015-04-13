@@ -1,79 +1,117 @@
 define(function(){
 	var BaseUtils = kendo.Class.extend({
-		saveToSession: function(key, value){
-			var currentValue = null, that = this;
-			switch(true){
-				case typeof value === 'string':
-					sessionStorage.setItem(key, value);
-					break;
-				case typeof value === 'object':
-					currentValue = this.getFromStorage(key);
-					if(currentValue){
-						$.extend(true, currentValue, value);
-						save(currentValue);
-					}else{
-						save(value);
-					}
-					break;
-			}
-			function save(value){
-				sessionStorage.setItem(key, JSON.stringify(value));
+		getObject: function(obj, is, value){
+			if(typeof is === 'string'){
+				return this.getObject(obj, is.split("."), value);
+			}else if(is.length === 1 && value !== undefined){
+				return obj[is[0]] = value;
+			}else if (is.length === 0){
+				return obj;
+			}else{
+				value !== undefined && !obj[is[0]] && (obj[is[0]] = {});
+				return this.getObject(obj[is[0]], is.slice(1), value);
 			}
 		},
+		saveToSession: function(key, value){
+			var name = key.split(":"), currentValue = null, that = this;
+			currentValue = that.getFromStorage(name[0]);
+			if(name[1]){
+				currentValue = currentValue || {};
+				that.getObject(currentValue, name[1], value);
+			}else {
+				currentValue = value;
+			}
+			sessionStorage.setItem(name[0], getEncrypted(that.encrpyt, JSON.stringify(currentValue)));
+		},
 		getFromSession: function (key) {
-			var value = sessionStorage.getItem(key), that = this;
-			// value && (value = getDecrypted(that.decrypt, value));
+			var name = key.split(":"), value = sessionStorage.getItem(name[0]), that = this;
 			try{
-				value = JSON.parse(value);
+				value && (value = getDecrypted(that.decrypt, value), value = JSON.parse(value));
 			}catch (e){
-				//is string?
+				//is string;
+			}
+			if(value && typeof value === 'object' && (value instanceof Array) === false && name[1]){
+				return this.getObject(value, name[1]);
+			}else{
+				return value;
 			}
 			return value;
 		},
-		deleteFromSession: function(key, objKey){
-			var currentValue = this.getFromStorage(key);
-			if(typeof currentValue === 'object' && objKey){
-				delete currentValue[objKey];
-				sessionStorage.setItem(key, JSON.stringify(currentValue));
+		deleteFromSession: function(key){
+			var names = key.split(":"), currentValue, name, parent, child;
+			if(names[1]){
+				name = names[1].split(".");
+				if(name.length > 1){
+					parent = names[1].substring(0, names[1].lastIndexOf("."));
+					child = names[1].substring(names[1].lastIndexOf(".") + 1, names[1].length);
+					currentValue = this.getFromSession(names[0]+":"+parent);
+					if(typeof currentValue === 'object'){
+						delete currentValue[child];
+						this.saveToSession(names[0]+":"+parent, currentValue);
+					}else{
+						throw new Error("Unknown :" + key);
+					}
+				}else{
+					currentValue = this.getFromSession(names[0]);
+					if(currentValue && typeof currentValue === 'object' && (currentValue instanceof Array) === false){
+						delete currentValue[names[1]];
+						this.saveToSession(names[0], currentValue);
+					}else{
+						sessionStorage.removeItem(key);
+					}
+				}
 			}else{
 				sessionStorage.removeItem(key);
 			}
 		},
 		saveToStorage: function (key, value) {
-			var currentValue = null, that = this;
-			switch(true){
-				case typeof value === 'string':
-					localStorage.setItem(key, getEncrypted(that.encrpyt, value));
-					break;
-				case typeof value === 'object':
-					currentValue = this.getFromStorage(key);
-					if(currentValue){
-						$.extend(true, currentValue, value);
-						save(currentValue);
-					}else{
-						save(value);
-					}
-					break;
+			var name = key.split(":"), currentValue = null, that = this;
+			currentValue = that.getFromStorage(name[0]);
+			if(name[1]){
+				currentValue = currentValue || {};
+				that.getObject(currentValue, name[1], value);
+			}else {
+				currentValue = value;
 			}
-			function save(value){
-				localStorage.setItem(key, getEncrypted(that.encrpyt, JSON.stringify(value)));
-			}
+			localStorage.setItem(name[0], getEncrypted(that.encrpyt, JSON.stringify(currentValue)));
 		},
 		getFromStorage: function (key) {
-			var value = localStorage.getItem(key), that = this;
-			value && (value = getDecrypted(that.decrypt, value));
+			var name = key.split(":"), value = localStorage.getItem(name[0]), that = this;
 			try{
-				value = JSON.parse(value);
+				value && (value = getDecrypted(that.decrypt, value), value = JSON.parse(value));
 			}catch (e){
-				//is string?
+				//is string;
+			}
+			if(value && typeof value === 'object' && (value instanceof Array) === false && name[1]){
+				return this.getObject(value, name[1]);
+			}else{
+				return value;
 			}
 			return value;
 		},
-		deleteFromStorage: function(key, objKey){
-			var currentValue = this.getFromStorage(key);
-			if(typeof currentValue === 'object' && objKey){
-				delete currentValue[objKey];
-				localStorage.setItem(key, JSON.stringify(currentValue));
+		deleteFromStorage: function(key){
+			var names = key.split(":"), currentValue, name, parent, child;
+			if(names[1]){
+				name = names[1].split(".");
+				if(name.length > 1){
+					parent = names[1].substring(0, names[1].lastIndexOf("."));
+					child = names[1].substring(names[1].lastIndexOf(".") + 1, names[1].length);
+					currentValue = this.getFromStorage(names[0]+":"+parent);
+					if(typeof currentValue === 'object'){
+						delete currentValue[child];
+						this.saveToStorage(names[0]+":"+parent, currentValue);
+					}else{
+						throw new Error("Unknown :" + key);
+					}
+				}else{
+					currentValue = this.getFromStorage(names[0]);
+					if(currentValue && typeof currentValue === 'object' && (currentValue instanceof Array) === false){
+						delete currentValue[names[1]];
+						this.saveToStorage(names[0], currentValue);
+					}else{
+						localStorage.removeItem(key);
+					}
+				}
 			}else{
 				localStorage.removeItem(key);
 			}
@@ -88,6 +126,7 @@ define(function(){
 			return decrypted;
 		}
 	});
+
 	var passKey = "U2FsdGVkX194LL7C9viD6Hc04eLuKhQFIv2FJ9Vj2Q9E/PbaMz3/mE/nBTA/+Ma2sDrqP/e8gwJwntgsGaFlwQ==";
 	function getEncrypted(encryptor, value){
 		return encryptor(passKey, value);

@@ -1,13 +1,12 @@
 define([
 	'text!./intro.html'
 ], function (html) {
-    var context,
-    model = mrapp.view({
+    var model = mrapp.view({
         html: html,
         name: "intro",
 		firstShow: true,
 		onBeforeShow: function(e){
-			context = this.model;
+            e.isSetup = true;
 		},
 		onHide: function(){
 			

@@ -6,9 +6,13 @@ define([
     var model = mrapp.view({
         html: html,
         name: "agreement",
-		onBeforeShow: function(e){
-			
-		},
+        onBeforeShow: function(e){
+            if(settings.isSetupComplete()){
+                e.preventDefault();
+            }else{
+                e.isSetup = true;
+            }
+        },
         onInit: function(e){
             
         },
@@ -19,8 +23,7 @@ define([
 			
 		},
         next: function(){
-			passcode.updatePasscodeCookie();
-			settings.disableFirstLaunch();
+			settings.setSetupComplete();
             mrapp.mobile.navigate("#view-profile");
         },
 		back: function(){
