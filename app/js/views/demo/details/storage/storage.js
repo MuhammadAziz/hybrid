@@ -25,7 +25,6 @@ define([
 				employee.title = "Bang";
 				employee.name = model.formData.name;
 				storageDatasource.add(employee);
-				storageDatasource.sync();
 				this.resetForm("formData");
 			}else{
 				this.toast("Please enter name");
