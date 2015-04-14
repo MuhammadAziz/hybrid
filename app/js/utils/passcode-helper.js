@@ -23,15 +23,14 @@ define([
 					guid = guid || PHRASE; //TODO: change pass phrase to patient guid
 					var encypted = this.encrpyt(guid, value);
 					this.saveToStorage(passcodeConst.KEY, encypted);
-					this.updatePasscodeCookie();
 				},
 				validate: function (passcode, guid) {
 					guid = guid || PHRASE; //TODO: change pass phrase to patient guid
 					var current = privateValue.getCurrentPasscode(guid);
 					return  passcode === current; //convert to string
 				},
-				updatePasscodeCookie: function () {
-					if (this.isPasscodeDisabled()) {
+				updatePasscodeTimeout: function () {
+					if (this.isPasscodeDisabled() && !settings.isSetupComplete()) {
 						return;
 					} else {
 						var date = new Date();
@@ -49,10 +48,18 @@ define([
 					settings.togglePasscode(value);
 				},
 				isInvalidPasscode: function () {
-					var timestamp, now = new Date(), expiry;
+					debugger;
+					var timestamp, now = new Date(), expiry, isInvalid = true;
 					timestamp = this.getFromStorage(passcodeConst.TIMESTAMP_KEY);
 					expiry = new Date(timestamp);
-					return expiry < now;
+					if(!timestamp){
+						//first launch or foreground
+						isInvalid = false;
+					}else{
+						this.deleteFromStorage(passcodeConst.TIMESTAMP_KEY);
+						isInvalid = expiry < now;
+					}
+					return isInvalid;
 				},
 				isPasscodeEnabled: function () {
 					return settings.isPasscodeValid() && this.isExist();

@@ -9,9 +9,6 @@ define([
         onInit: function(e){
             
         },
-		onBeforeShow: function(){
-			// this.model.reset();
-		},
         onAfterShow: function(e){
 			
         },
@@ -23,7 +20,7 @@ define([
 		},
         unlock: function(){
             if(this.validate()){
-				passcode.updatePasscodeCookie();
+				// passcode.updatePasscodeTimeout();
 				mrapp.mobile.navigate("#view-profile");
 			}else{
 				notif.alert("Please enter correct pin", null, "Invalid PIN", "Ok");

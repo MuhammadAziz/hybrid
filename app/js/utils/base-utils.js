@@ -117,16 +117,26 @@ define(function(){
 			}
 		},
 		encrpyt: function(passphrase, decrypted){
-			var encrypted = CryptoJS.AES.encrypt(decrypted, passphrase);
+			var encrypted = null;
+			if(enableEncryption){
+				encrypted = CryptoJS.AES.encrypt(decrypted, passphrase);
+			}else{
+				encrypted = decrypted;
+			}
 			return encrypted.toString();
 		},
 		decrypt: function(passphrase, encrypted){
-			var decrypted = CryptoJS.AES.decrypt(encrypted, passphrase);
-			decrypted = CryptoJS.enc.Latin1.stringify(decrypted);
+			var decrypted = null;
+			if(enableEncryption){
+				decrypted = CryptoJS.AES.decrypt(encrypted, passphrase);
+				decrypted = CryptoJS.enc.Latin1.stringify(decrypted);
+			}else{
+				decrypted = encrypted;
+			}
 			return decrypted;
 		}
 	});
-
+	var enableEncryption = false;
 	var passKey = "U2FsdGVkX194LL7C9viD6Hc04eLuKhQFIv2FJ9Vj2Q9E/PbaMz3/mE/nBTA/+Ma2sDrqP/e8gwJwntgsGaFlwQ==";
 	function getEncrypted(encryptor, value){
 		return encryptor(passKey, value);

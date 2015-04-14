@@ -5,11 +5,11 @@ define([
 		run: function () {
 			
 			document.addEventListener("resign", function () {
-				passcode.updatePasscodeCookie();
+				passcode.updatePasscodeTimeout();
 			}, false);
 			
 			document.addEventListener("pause", function () {
-				passcode.updatePasscodeCookie();
+				passcode.updatePasscodeTimeout();
 			}, false);
 			
 			document.addEventListener("error", function () {

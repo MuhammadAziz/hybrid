@@ -1,4 +1,4 @@
-define(['utils/settings'], function (settings) {
+define(['utils/settings', 'utils/passcode-helper'], function (settings, passcode) {
     var mrapp = window.mrapp = window.mrapp || {model: {}},
     MediRecordsObservable = kendo.data.ObservableObject.extend({
         init: function (options) {
@@ -35,7 +35,7 @@ define(['utils/settings'], function (settings) {
                 //     e.preventDefault();
                 //     mrapp.mobile.navigate("#view-login");
                 // }else
-                if(!settings.isPasscodeValid()){
+                if(passcode.isInvalidPasscode()){
                     e.preventDefault();
                     mrapp.mobile.navigate("#view-lock");
                 }
