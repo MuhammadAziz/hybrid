@@ -39,6 +39,8 @@ define(['utils/settings', 'utils/passcode-helper'], function (settings, passcode
                     e.preventDefault();
                     mrapp.mobile.navigate("#view-lock");
                 }
+            }else if(e.isSetup){
+                this.model.clearHistory();
             }
         },
         onInit: function (e) {
@@ -100,6 +102,9 @@ define(['utils/settings', 'utils/passcode-helper'], function (settings, passcode
             $.each(arguments, function (i, val) {
                 /^form/i.test(val) && validate(val);
             });
+        },
+        clearHistory: function(){
+            mrapp.mobile && (mrapp.mobile.pane.history = [""]); //clear history
         },
         toast: function (text) {
             window.plugins.toast.showShortBottom(text);

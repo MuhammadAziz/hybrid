@@ -5,10 +5,9 @@ define(['utils/base-utils'], function(BaseUtils){
 	var DataSource = kendo.data.DataSource.extend({
 		init: function(element, options){
 			var that = this;
-			if(element.offline){
+			if(element && element.offline){
 				module.offlineKey = element.offline;
 				element.offlineStorage = module;
-				element.autoSync = true;
 			}
 			kendo.data.DataSource.fn.init.call(that, element, options);
 			
@@ -29,9 +28,7 @@ define(['utils/base-utils'], function(BaseUtils){
 			return localStorage.getItem(this.offlineKey);
 		},
 		setItem: function(item){
-			if(item.length){
-				return localStorage.setItem(this.offlineKey, item);
-			}
+			return localStorage.setItem(this.offlineKey, item);
 		}
 	};
 	mrapp.data = function(options){

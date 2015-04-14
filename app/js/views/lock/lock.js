@@ -20,7 +20,7 @@ define([
 		},
         unlock: function(){
             if(this.validate()){
-				// passcode.updatePasscodeTimeout();
+				model.clearHistory();
 				mrapp.mobile.navigate("#view-profile");
 			}else{
 				notif.alert("Please enter correct pin", null, "Invalid PIN", "Ok");

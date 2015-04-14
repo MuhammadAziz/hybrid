@@ -17,11 +17,12 @@ define([
 			}, false);
             
 			document.addEventListener("backbutton", function (e) {
-                //TODO:
-                //if view contain data-role="backbutton"
-                // navigator.app.backHistory()
-                //else
-                //navigator.app.exitApp();
+				var his = mrapp.mobile.pane.history;
+				if(his.length <= 2){//his[0] = initial page, his[1] = first page
+					navigator.app && navigator.app.exitApp();
+				}else{
+					mrapp.mobile.navigate("#:back");
+				}
 			}, false);
 		}
 	};

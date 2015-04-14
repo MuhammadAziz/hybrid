@@ -2,7 +2,7 @@ define([
 	"utils/base-utils",
 	"utils/settings"],
 		function (BaseUtils, settings) {
-			var PHRASE = "SGVsbG8sIFdvnVBJbHJuigUIGUFT==cmxkIQ==";
+			var PHRASE = "SGVsbG8sIUIGUFT==cmxkIQ==";
 			var passcodeConst = {
 				KEY: "settings:passcode",
 				TIMESTAMP_KEY: "settings:timestamp",
@@ -26,8 +26,9 @@ define([
 				},
 				validate: function (passcode, guid) {
 					guid = guid || PHRASE; //TODO: change pass phrase to patient guid
-					var current = privateValue.getCurrentPasscode(guid);
-					return  passcode === current; //convert to string
+					var current = privateValue.getCurrentPasscode(guid), result = passcode === current;
+					result && this.deleteFromStorage(passcodeConst.TIMESTAMP_KEY);
+					return result; //convert to string
 				},
 				updatePasscodeTimeout: function () {
 					if (this.isPasscodeDisabled() && !settings.isSetupComplete()) {
@@ -39,7 +40,7 @@ define([
 					}
 				},
 				changePasscode: function () {
-					//TODO: oprn setup/pin
+					//TODO: open setup/pin
 				},
 				togglePasscode: function (value) {
 					if (value === false) {
@@ -48,7 +49,6 @@ define([
 					settings.togglePasscode(value);
 				},
 				isInvalidPasscode: function () {
-					debugger;
 					var timestamp, now = new Date(), expiry, isInvalid = true;
 					timestamp = this.getFromStorage(passcodeConst.TIMESTAMP_KEY);
 					expiry = new Date(timestamp);
@@ -56,7 +56,6 @@ define([
 						//first launch or foreground
 						isInvalid = false;
 					}else{
-						this.deleteFromStorage(passcodeConst.TIMESTAMP_KEY);
 						isInvalid = expiry < now;
 					}
 					return isInvalid;

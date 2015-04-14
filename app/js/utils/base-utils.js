@@ -136,8 +136,8 @@ define(function(){
 			return decrypted;
 		}
 	});
-	var enableEncryption = false;
-	var passKey = "U2FsdGVkX194LL7C9viD6Hc04eLuKhQFIv2FJ9Vj2Q9E/PbaMz3/mE/nBTA/+Ma2sDrqP/e8gwJwntgsGaFlwQ==";
+	var enableEncryption = true;
+	var passKey = "viD6Hc04eLuKhQFIv2FJ9Vj2Q9E/++";
 	function getEncrypted(encryptor, value){
 		return encryptor(passKey, value);
 	}

@@ -2,6 +2,7 @@ define(function () {
 	var offlineDatasource = new mrapp.data({
         // offlineStorage: "offlineStorage",
         offline: "offlineStorage",
+        autoSync: true,
         connect: "Synchronize data",
         disconnect: "Offline mode activated",
 		transport: {

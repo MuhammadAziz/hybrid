@@ -2,13 +2,14 @@ define([
 	'text!./storage.html',
 	'data/demo/demo-offline-datasource',
 ], function (html, storageDatasource) {
-	var view, navbar, category;
+	var view, navbar, category, list;
     var model = mrapp.view({
         html: html,
         name: 'storage',
         storageDatasource: storageDatasource,
         onInit: function (e) {
 			navbar = e.view.header.find('.km-navbar').data('kendoMobileNavBar');
+			list = e.sender.element.find("#view-storage-list");
 		},
 		onAfterShow: function (e) {
 			storageDatasource.read();
@@ -26,6 +27,8 @@ define([
 				employee.name = model.formData.name;
 				storageDatasource.add(employee);
 				this.resetForm("formData");
+				// storageDatasource.read();
+				// list.data("kendoMobileListView").refresh();
 			}else{
 				this.toast("Please enter name");
 			}
