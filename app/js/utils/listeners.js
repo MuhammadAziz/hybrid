@@ -19,6 +19,7 @@ define([
 			document.addEventListener("backbutton", function (e) {
 				var his = mrapp.mobile.pane.history;
 				if(his.length <= 2){//his[0] = initial page, his[1] = first page
+					passcode.updatePasscodeTimeout();
 					navigator.app && navigator.app.exitApp();
 				}else{
 					mrapp.mobile.navigate("#:back");
