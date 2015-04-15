@@ -10,7 +10,7 @@ define([
             
         },
         onAfterShow: function(e){
-			
+			model.clearHistory();
         },
 		onShow: function(e){
 			
