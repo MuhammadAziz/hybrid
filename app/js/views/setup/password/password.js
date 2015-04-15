@@ -47,5 +47,5 @@ define([
             model.resetForm.call(model, "formData.confirmPassword");
         }
     };
-    return model;
+    return model.newInstance;
 });

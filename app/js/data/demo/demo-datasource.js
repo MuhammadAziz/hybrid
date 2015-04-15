@@ -1,5 +1,5 @@
 define(function () {
-	var todoDatasource = new kendo.data.DataSource({
+	var todoDatasource = mrapp.data({
 		data: [
 			{title: 'Talk to corporate', category: 'Work', target: null},
 			{title: 'Promote synergy', category: 'Work', target: null},

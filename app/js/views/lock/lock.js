@@ -37,5 +37,5 @@ define([
 			model.resetForm("formData");
 		}
     });
-    return model;
+    return model.newInstance;
 });

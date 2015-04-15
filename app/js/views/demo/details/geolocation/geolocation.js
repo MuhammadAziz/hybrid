@@ -281,5 +281,5 @@ define([
 		}
 	});
 
-	return geolocation;
+	return geolocation.newInstance;
 });

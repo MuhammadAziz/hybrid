@@ -20,5 +20,5 @@ define([
 		}
 	});
 	
-	return networkConnection;
+	return networkConnection.newInstance;
 });

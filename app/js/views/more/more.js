@@ -14,5 +14,5 @@ define([
             alert("test");
         }
     });
-    return model;
+    return model.newInstance;
 });

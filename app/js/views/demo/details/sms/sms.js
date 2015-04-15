@@ -35,5 +35,5 @@ define([
 			that.resultsField.innerHTML = currentMessage + message + '<br />';
 		}
 	});
-	return smsModule;
+	return smsModule.newInstance;
 });

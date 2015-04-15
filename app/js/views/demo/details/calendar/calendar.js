@@ -116,5 +116,5 @@ define([
 			alert('Calendar error: ' + JSON.stringify(msg));
 		}
 	});
-	return calendarView;
+	return calendarView.newInstance;
 });

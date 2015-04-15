@@ -28,5 +28,5 @@ define([
 		}
 	});
 	
-	return email;
+	return email.newInstance;
 });

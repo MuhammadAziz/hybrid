@@ -103,5 +103,5 @@ define([
             model.resetForm.call(model, "formData");
         }
     };
-    return model;
+    return model.newInstance;
 });

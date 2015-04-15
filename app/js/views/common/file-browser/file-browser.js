@@ -70,6 +70,6 @@ define([
 		}
 	});
 
-	return model;
+	return model.newInstance;
 
 });

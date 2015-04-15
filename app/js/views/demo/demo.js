@@ -14,6 +14,7 @@ define([
     'views/demo/details/upload/upload',
     'views/demo/details/storage/storage'
 ], function (html, todoDatasource) {
+    debugger;
 	var view, navbar, category;
     var model = mrapp.view({
         html: html,
@@ -33,5 +34,5 @@ define([
 	$.subscribe('/newDemo/add', function (e, text) {
 		todoDatasource.add({title: text, category: category});
 	});
-	return model;
+	return model.newInstance;
 });

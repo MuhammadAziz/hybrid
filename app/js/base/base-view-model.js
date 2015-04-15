@@ -13,7 +13,11 @@ define(['utils/settings', 'utils/passcode-helper'], function (settings, passcode
             }
             //expose view model to global object as mrapp.model[name]
             if (options.name && options.hasOwnProperty("name")) {
-                mrapp.model[options.name] = that;
+                if(mrapp.model[options.name]){
+                    new Error("mrapp.view(): view model with name: " + options.name + " is already defined");
+                }else{
+                    mrapp.model[options.name] = that;
+                }
             } else {
                 throw new Error("mrapp.view(): view model name shoud be defined");
             }
@@ -128,7 +132,11 @@ define(['utils/settings', 'utils/passcode-helper'], function (settings, passcode
     };
     mrapp.model = mrapp.model || {};
     mrapp.view = function (options) {
-        return new MediRecordsObservable(options);
+        var view = new MediRecordsObservable(options);
+        view.newInstance = function(){
+            return new MediRecordsObservable(options);
+        };
+        return view;
     };
     return MediRecordsObservable;
 });

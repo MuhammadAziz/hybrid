@@ -148,5 +148,5 @@ define([
 			window.resolveLocalFileSystemURL(path, gotFile, error);
 		}
 	});
-	return uploadApp;
+	return uploadApp.newInstance;
 });

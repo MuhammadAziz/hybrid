@@ -21,5 +21,5 @@ define([
             mrapp.mobile.navigate("#view-token");
         }
     });
-    return model;
+    return model.newInstance;
 });

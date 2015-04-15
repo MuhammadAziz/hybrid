@@ -34,5 +34,5 @@ define([
 			this.onBeforeShow(e);
 		}
 	});
-	return model;
+	return model.newInstance;
 });

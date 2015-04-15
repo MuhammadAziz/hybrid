@@ -1,5 +1,5 @@
-define(['utils/base-utils'], function(BaseUtils){
-    var mrapp = window.mrapp = window.mrapp || {}, utils = new BaseUtils();
+define(['utils/settings'], function(settings){
+    var mrapp = window.mrapp = window.mrapp || {};
     var connectMessage = "Connected to MediRecords, perform synchronize data";
     var disconnectMessage = "Disconnected from MediRecords, data will be synchronize when online";
 	var DataSource = kendo.data.DataSource.extend({
@@ -12,13 +12,17 @@ define(['utils/base-utils'], function(BaseUtils){
 			kendo.data.DataSource.fn.init.call(that, element, options);
 			
 			document.addEventListener("online", function(){
-				window.plugins.toast.showShortBottom(element.connect || connectMessage);
-				that.online(true);
+				if(settings.isSetupComplete()){
+					window.plugins.toast.showShortBottom(element.connect || connectMessage);
+					that.online(true);
+				}
 			}, false);
 			
 			document.addEventListener("offline", function(){
-				window.plugins.toast.showShortBottom(element.disconnect || disconnectMessage);
-				that.online(false);
+				if(settings.isSetupComplete()){
+					window.plugins.toast.showShortBottom(element.disconnect || disconnectMessage);
+					that.online(false);
+				}
 			}, false);
 		}
 	}),

@@ -33,5 +33,5 @@ define([
 			that.resultsField.innerHTML = currentMessage + message + '<br />';
 		}
 	});
-    return barcode;
+    return barcode.newInstance;
 });

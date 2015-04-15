@@ -25,5 +25,5 @@ define([
             mrapp.mobile.navigate("#:back");
         }
     });
-    return model;
+    return model.newInstance;
 });

@@ -1,5 +1,5 @@
 define(function () {
-	var offlineDatasource = new mrapp.data({
+	var offlineDatasource = mrapp.data({
         // offlineStorage: "offlineStorage",
         offline: "offlineStorage",
         autoSync: true,

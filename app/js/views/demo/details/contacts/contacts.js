@@ -208,5 +208,5 @@ define([
 		}
 	});
 
-	return contactsView;
+	return contactsView.newInstance;
 });

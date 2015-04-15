@@ -94,5 +94,5 @@ define([
 		}
 	});
 
-	return galleryApp;
+	return galleryApp.newInstance;
 });

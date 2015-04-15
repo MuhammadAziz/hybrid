@@ -39,5 +39,5 @@ define([
 	// $.subscribe('/newDemo/add', function (e, text) {
 	// 	todoDatasource.add({title: text, category: category});
 	// });
-	return model;
+	return model.newInstance;
 });

@@ -107,5 +107,5 @@ define([
 			}
 		}
 	});
-	return notification;
+	return notification.newInstance;
 });

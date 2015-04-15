@@ -95,5 +95,5 @@ define([
 		}
 	});
 
-	return cameraApp;
+	return cameraApp.newInstance;
 });
