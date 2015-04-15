@@ -5,7 +5,7 @@ define([
 			var PHRASE = "SGVsbG8sIUIGUFT==cmxkIQ==";
 			var passcodeConst = {
 				KEY: "settings:passcode",
-				TIMESTAMP_KEY: "settings:timestamp",
+				TIMESTAMP_KEY: "data:d", //minimize name to speed up encryption
 				EXPIRED_IN_MINUTE: 1
 			};
 			var privateValue = {
@@ -15,6 +15,9 @@ define([
 						value = settings.decrypt(guid, value);
 					}
 					return value;
+				},
+				clearTimestamp: function(){
+					settings.saveToStorage(passcodeConst.TIMESTAMP_KEY, false);
 				}
 			};
 
@@ -23,11 +26,12 @@ define([
 					guid = guid || PHRASE; //TODO: change pass phrase to patient guid
 					var encypted = this.encrpyt(guid, value);
 					this.saveToStorage(passcodeConst.KEY, encypted);
+					privateValue.clearTimestamp();
 				},
 				validate: function (passcode, guid) {
 					guid = guid || PHRASE; //TODO: change pass phrase to patient guid
 					var current = privateValue.getCurrentPasscode(guid), result = passcode === current;
-					result && this.deleteFromStorage(passcodeConst.TIMESTAMP_KEY);
+					result && privateValue.clearTimestamp();
 					return result; //convert to string
 				},
 				updatePasscodeTimeout: function () {
@@ -35,7 +39,7 @@ define([
 						return;
 					} else {
 						var date = new Date();
-						date.setTime(date.getTime() + (passcodeConst.EXPIRED_IN_MINUTE * 60 * 1000));
+						date.setTime(date.getTime() - (passcodeConst.EXPIRED_IN_MINUTE * 60 * 1000));
 						this.saveToStorage(passcodeConst.TIMESTAMP_KEY, date.toJSON());
 					}
 				},
@@ -49,15 +53,9 @@ define([
 					settings.togglePasscode(value);
 				},
 				isInvalidPasscode: function () {
-					var timestamp, now = new Date(), expiry, isInvalid = true;
+					var timestamp, now = new Date(), isInvalid = true;
 					timestamp = this.getFromStorage(passcodeConst.TIMESTAMP_KEY);
-					expiry = new Date(timestamp);
-					if(!timestamp){
-						//first launch or foreground
-						isInvalid = false;
-					}else{
-						isInvalid = expiry < now;
-					}
+					isInvalid = timestamp === false ? timestamp : timestamp === null ? isInvalid : new Date(timestamp) < now;
 					return isInvalid;
 				},
 				isPasscodeEnabled: function () {

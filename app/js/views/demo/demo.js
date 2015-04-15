@@ -14,18 +14,17 @@ define([
     'views/demo/details/upload/upload',
     'views/demo/details/storage/storage'
 ], function (html, todoDatasource) {
-    debugger;
 	var view, navbar, category;
     var model = mrapp.view({
         html: html,
         name: 'demo',
-        todoDatasource: todoDatasource,
+        todoDatasource: todoDatasource(),
         onInit: function (e) {
 			navbar = e.view.header.find('.km-navbar').data('kendoMobileNavBar');
 		},
 		onAfterShow: function (e) {
 			category = e.view.params.category || 'MediRecords Demo';
-			todoDatasource.filter({field: 'category', operator: 'eq', value: category});
+			model.todoDatasource.filter({field: 'category', operator: 'eq', value: category});
 			navbar.title(category);
 		}
     });

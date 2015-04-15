@@ -36,7 +36,10 @@ define(['utils/settings'], function(settings){
 		}
 	};
 	mrapp.data = function(options){
-		return new DataSource(options);
+		var data = function(){
+			return new DataSource(options);
+		};
+		return data;
 	};
     return DataSource;
 });
