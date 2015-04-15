@@ -43,7 +43,7 @@ define([
             var next = $("#" + target.attr('data-next'));
             value && next.focus();
         },
-        dataChanged: function () {
+        dataChanged: function (event) {
             var data = model.formData, confirm = model.formDataConfirm, passCodes = [];
             if (data.passCode1 && data.passCode2 && data.passCode3 && data.passCode4 && !model.isConfirm) {
                 model.set("isConfirm", true);

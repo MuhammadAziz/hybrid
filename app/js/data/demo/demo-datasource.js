@@ -15,6 +15,7 @@ define(function () {
 			{title: 'Upload', category: 'MediRecords Demo', target:'upload'},
 			{title: 'Calendar', category: 'MediRecords Demo', target:'calendar'},
 			{title: 'Contacts', category: 'MediRecords Demo', target:'contacts'},
+			{title: 'Network Information', category: 'MediRecords Demo', target:'network-connection'},
 			{title: 'Storage', category: 'MediRecords Demo', target:'storage'}
 		]
 	});
