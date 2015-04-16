@@ -1,0 +1,41 @@
+{
+  "ProjectName": "FriendsHybrid",
+  "ProjectGuid": "e8734687-37fb-43bd-890d-10070a271763",
+  "projectVersion": 1,
+  "AppIdentifier": "com.telerik.FriendsHybrid",
+  "DisplayName": "FriendsHybrid",
+  "Author": "",
+  "Description": "",
+  "BundleVersion": "1.0",
+  "AndroidVersionCode": "1",
+  "iOSDeviceFamily": [
+    "1",
+    "2"
+  ],
+  "iOSBackgroundMode": [],
+  "ProjectTypeGuids": "{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}",
+  "FrameworkVersion": "3.5.0",
+  "AndroidPermissions": [],
+  "DeviceOrientations": [
+    "Portrait",
+    "Landscape"
+  ],
+  "AndroidHardwareAcceleration": "false",
+  "iOSStatusBarStyle": "Default",
+  "Framework": "Cordova",
+  "WP8TileTitle": "",
+  "WP8Publisher": "",
+  "WP8Capabilities": [],
+  "WP8Requirements": [],
+  "WP8PublisherID": "{b81e0320-05d3-48b7-ade8-7e4d52cfff9a}",
+  "WP8ProductID": "{92b32efe-9d24-4487-ae77-8472deca3a58}",
+  "WPSdk": "8.0",
+  "WP8PackageIdentityName": "1234Telerik.FriendsHybrid",
+  "WP8WindowsPublisherName": "CN=Telerik",
+  "WP8SupportedResolutions": [
+    "ID_RESOLUTION_WVGA",
+    "ID_RESOLUTION_WXGA",
+    "ID_RESOLUTION_HD720P"
+  ],
+  "CorePlugins": []
+}
