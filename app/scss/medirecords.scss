@@ -11,28 +11,11 @@
     @import "widgets";
     @import "extendable";
     @import "icons";
-    .splash-bg:before{
+    &.blur{
         background-image: url('../img/bg-splash.jpg');
-    }
-    .bg-blur-container .bg-blur:before{
-        content: "";
-        position: fixed;
-        left: 0;
-        right: 0;
-        z-index: -1;
-
-        display: block;
-        width: 100%;
-        height: 800px;
-
-        -webkit-filter: blur(10px);
-        filter: blur(10px);
-    }
-    .bg-blur-container .bg-blur{
-        position: fixed;
-        left: 0;
-        right: 0;
-        z-index: 0;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
     }
     @import "responsive";
 }

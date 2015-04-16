@@ -9,7 +9,7 @@ module.exports = function(grunt) {
     var debug_ios = buildDestination + "/.ab/emulatorfiles/Cordova350.app";
     var target = "debug/app.apk";
     var androidTarget = "12590FAA-5EDD-4B12-856D-F52A0A1599F2/";
-    var iPhone = "iPhone-4s";
+    var iPhone = "iPhone-5";
     var releaseDate = (new Date()).toISOString().slice(0, 10);
 
     var iosRelease = {};
@@ -28,38 +28,38 @@ module.exports = function(grunt) {
                     cwd: buildDestination,
                     src: [
                         "css/**/*.css",
-                        'js/**/*.js',
+                        'scripts/**/*.js',
                         '**/*.html',
                         '**/*.jpg'
                     ],
                     dest: debug
                 }]
             },
-            //			ios: {
-            //				verbose: true,
-            //				updateAndDelete: true,
+            //          ios: {
+            //              verbose: true,
+            //              updateAndDelete: true,
             //                                ignoreInDest: ["plugins", "plugins/**/*"],
-            //				files: [
-            //					{
-            //						cwd: buildDestination + "/",
-            //						src: [
-            //							"css/**/*",
-            //							"bower_components/**/*",
-            //							"js/**/*",
-            //							"img/**/*",
-            //							"photo/**/*",
-            //							"!scss/**/*",
-            //							"*.html",
-            //							"*.js",
-            //							'!**/*.apk',
-            //							"!.ab/**/*",
-            //							"kendo/**/*",
-            //							"!App_Resources/**/*",
-            //						],
-            //						dest: debug_ios + "/www"
-            //					}
-            //				]
-            //			},
+            //              files: [
+            //                  {
+            //                      cwd: buildDestination + "/",
+            //                      src: [
+            //                          "css/**/*",
+            //                          "bower_components/**/*",
+            //                          "js/**/*",
+            //                          "img/**/*",
+            //                          "photo/**/*",
+            //                          "!scss/**/*",
+            //                          "*.html",
+            //                          "*.js",
+            //                          '!**/*.apk',
+            //                          "!.ab/**/*",
+            //                          "kendo/**/*",
+            //                          "!App_Resources/**/*",
+            //                      ],
+            //                      dest: debug_ios + "/www"
+            //                  }
+            //              ]
+            //          },
             dist: {
                 verbose: true,
                 updateAndDelete: true,
@@ -122,17 +122,17 @@ module.exports = function(grunt) {
         },
         // Copy the source files into the dist directory
         copy: {
-            //			all: {
-            //				files: [
-            //					{
-            //						expand: true,
-            //						cwd: "app/",
-            //						src: ["**/*", '!**/*.apk'],
-            //						dest: buildDestination + "/",
-            //						dot: true
-            //					}
-            //				]
-            //			},
+            //          all: {
+            //              files: [
+            //                  {
+            //                      expand: true,
+            //                      cwd: "app/",
+            //                      src: ["**/*", '!**/*.apk'],
+            //                      dest: buildDestination + "/",
+            //                      dot: true
+            //                  }
+            //              ]
+            //          },
             android: {
                 files: [{
                     expand: true,
@@ -140,7 +140,7 @@ module.exports = function(grunt) {
                     src: [
                         "css/**/*",
                         "bower_components/**/*",
-                        "js/**/*",
+                        "scripts/**/*",
                         "**/*.{jpg,png}",
                         "scss/**/*",
                         "**/*.html",
@@ -161,7 +161,7 @@ module.exports = function(grunt) {
                     src: [
                         "css/**/*",
                         "bower_components/**/*",
-                        "js/**/*",
+                        "scripts/**/*",
                         "**/*.{jpg,png}",
                         "scss/**/*",
                         "**/*.html",
@@ -222,11 +222,11 @@ module.exports = function(grunt) {
             options: {
                 jshintrc: true
             },
-            all: ["*.js", "app/js/**/*.js", "!app/js/libs/**/*.js"]
+            all: ["*.js", "app/scripts/**/*.js", "!app/scripts/libs/**/*.js"]
         },
         // Run JSCS using the .jscsrc file for config
         jscs: {
-            all: ["*.js", "app/js/*.js"],
+            all: ["*.js", "app/scripts/*.js"],
             options: {
                 config: ".jscsrc"
             }
@@ -263,9 +263,9 @@ module.exports = function(grunt) {
             all: {
                 files: [{
                     expand: true,
-                    cwd: buildDestination + "/js/",
+                    cwd: buildDestination + "/scripts/",
                     src: "**/*.js",
-                    dest: buildDestination + "/js/"
+                    dest: buildDestination + "/scripts/"
                 }]
             }
         },
@@ -304,18 +304,18 @@ module.exports = function(grunt) {
         }
         // Watch for changes in the scss directory and invoke the
         // sass task as necessary
-        //		watch: {
-        //			sass: {
-        //				files: ["app/scss/**/*.scss"],
-        //				tasks: ["sass"]
-        //			},
-        //			sync: {
-        //				files: [source + "**/*"],
-        //				tasks: ["sync"],
-        //				options: {
-        //					event: ['added', 'changed', 'deleted']
-        //				}
-        //			}
+        //      watch: {
+        //          sass: {
+        //              files: ["app/scss/**/*.scss"],
+        //              tasks: ["sass"]
+        //          },
+        //          sync: {
+        //              files: [source + "**/*"],
+        //              tasks: ["sync"],
+        //              options: {
+        //                  event: ['added', 'changed', 'deleted']
+        //              }
+        //          }
         //            ,
         //            android: {
         //                files: [source + "**/*.{js,html,css,kml}"],
@@ -331,7 +331,7 @@ module.exports = function(grunt) {
         //                    event: ['added', 'changed', 'deleted']
         //                }
         //            }
-        //		}
+        //      }
     });
     // Utility
     grunt.loadNpmTasks("grunt-contrib-watch");
@@ -388,10 +388,10 @@ module.exports = function(grunt) {
     grunt.registerTask("release:android", ["build", "shell:create_dir_release", "appbuilder:android_release"]);
     grunt.registerTask("release:ios", ["build", "shell:create_dir_release", "appbuilder:ios_release"]);
 
-    //	grunt.registerTask("build", ["lint", "shell:clean_dist", "copy"]);
-    //	grunt.registerTask("android", ["build", "appbuilder:android", "shell:install_android"]);
-    //	grunt.registerTask("ios", ["build", "appbuilder:ios"]);
-    //	grunt.registerTask("install:android", ["android"]);
-    //	grunt.registerTask("install:ios", ["shell:install_ios"]);
-    //	grunt.registerTask("emulate", ["install:ios"]);
+    //  grunt.registerTask("build", ["lint", "shell:clean_dist", "copy"]);
+    //  grunt.registerTask("android", ["build", "appbuilder:android", "shell:install_android"]);
+    //  grunt.registerTask("ios", ["build", "appbuilder:ios"]);
+    //  grunt.registerTask("install:android", ["android"]);
+    //  grunt.registerTask("install:ios", ["shell:install_ios"]);
+    //  grunt.registerTask("emulate", ["install:ios"]);
 };

@@ -1,7 +1,7 @@
 .mr-button{
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
 }
 .mr-question-mark{
     background-color: rgba(255,255,255,0.3);
@@ -9,4 +9,14 @@
     -moz-border-radius: 100%;
     border-radius: 100%;
     color: white;
+	min-height: 5vh;
+	min-width: 5vh;
+    &:before{
+    	content:'?';
+		position: absolute;
+		font-size: 15pt;
+		font-weight: bold;
+		left: 1.2vh;
+		bottom: 0.1vh;
+    }
 }

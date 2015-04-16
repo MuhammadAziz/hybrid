@@ -4,12 +4,11 @@
         <title>MediRecords</title>
         <link rel="stylesheet" href="kendo/styles/kendo.mobile.all.min.css">
         <!-- <link rel="stylesheet" href="kendo/custom/kendo.mobile.flat.material-blue.css"> -->
-        <link rel="stylesheet" href="js/libs/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="js/libs/bootstrap/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="scripts/libs/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="scripts/libs/bootstrap/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/medirecords.css">
-        <link rel="stylesheet" href="css/demo-tabstrip.css">
     </head>
-    <body id="body" class="body">
+    <body id="body" class="body blur">
         <div data-role="layout" data-id="tabstrip-layout">
             <header data-role="header">
                 <div data-role="navbar">
@@ -17,8 +16,7 @@
                     <span data-role="view-title"></span>
                     <!--<a data-align="right" data-role="button" class="nav-button" href="#/">Index</a>-->
                 </div>
-            </header>
-
+            </header>ñ
             <p>TabStrip</p>
 
             <div data-role="footer">
@@ -26,7 +24,7 @@
                     <a href="#view-profile" data-icon="contacts">Profiles
                     </a><a href="#view-favorite" data-icon="icon-love">Favorites
                     </a><a href="#view-demo" data-icon="icon-love">Demo
-                    </a><a href="#view-home" data-icon="icon-home">Home
+                    </a><a href="#view-home" data-icon="icon-home">Providers
                     </a><a href="#view-lock" data-icon="icon-key">Lock
                     </a><a href="#view-more" data-icon="icon-more">More</a>
                 </div>
@@ -40,6 +38,13 @@
                 </div>
             </header>
         </div>
+        <div data-role="layout" data-id="setup-layout">
+            <div data-role="header">
+                <div class="col-xs-12 text-center mr-logo">
+                    <img src="img/MediRecordsIcon.png" alt="MediRecords" title="MediRecords" style="width: 100px;" />
+                </div>
+            </div>
+        </div>
         <script src="cordova.js"></script>
         <script src="kendo/js/jquery.min.js"></script>
         <script src="kendo/js/kendo.mobile.min.js"></script> 
@@ -47,10 +52,10 @@
         <!-- <script src="js/libs/jaydata/jaydata.js"></script> -->
         <!-- <script src="js/libs/jaydata/jaydata.kendo.js"></script> -->
         <!-- <script src="js/libs/jaydata/todoDatabase.js"></script> -->
-        <script src="js/libs/async.js"></script>
-        <script src="js/libs/aes.js"></script>
-        <script src="js/libs/bootstrap/js/bootstrap.min.js"></script>
+        <script src="scripts/libs/async.js"></script>
+        <script src="scripts/libs/aes.js"></script>
+        <script src="scripts/libs/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/libs/jquery.fittext.js"></script>
-        <script src="bower_components/requirejs/require.js" data-main="js/main.js"></script>
+        <script src="bower_components/requirejs/require.js" data-main="scripts/main.js"></script>
     </body>
 </html>

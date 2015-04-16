@@ -1,34 +1,53 @@
-&.km-on-ios {
-    [data-role="view"] > div{
-        margin-top: 20px;
-    }
-    .bg-blur{
-        margin-top: -20px;
+.mr-full-width * {
+    input, [data-role="button"]{
+        width: 100%;
     }
 }
-.bg-blur-container .km-content{
-    background: transparent;
-    display: block;
-}
-.bg-blur-container .km-pages li{
-    width: 2em;
+
+.center{
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.mr-full-width * input {
-    width: 100%;
-}
-
-.km-footer{
-    background: rgba(255,255,255,0.5);
+.km-footer .km-tabstrip{
+    background: $color-white-semi-transparent;
     .km-icon, .km-text{
-        color: #333;
+        color: $color-mrapp-white;
     }
     .km-state-active{
         background: $color-mrapp-blue;
     }
 }
 
+.setup-layout {
+    .km-content{
+        background: transparent;
+        display: block;
+    }
+    .km-pages li{
+        width: 2em;
+        height: .5em;
+        background-color: $color-white-semi-transparent;
+        &.km-current-page{
+            background-color: $color-mrapp-white;
+        }
+    }
+    .km-footer{
+        background: transparent;
+        margin-bottom: 10px;
+    }
+}
+
+.mr-logo{
+    padding-top: 5vh;
+    padding-bottom: 3vh;
+}
+
 .km-navbar{
     min-height: 10vh;
 }
 
+&.km-on-ios .km-header {
+    min-height: 20px;
+}

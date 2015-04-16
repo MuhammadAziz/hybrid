@@ -1,0 +1,20 @@
+<div id="view-token" class="setup-layout" 
+     data-role="view" data-stretch="true" 
+     data-model="mrapp.model.token" 
+     data-init="mrapp.model.token.onInit" 
+     data-before-show="mrapp.model.token.onBeforeShow"
+     style="display: none;">
+    <div class="bg-blur splash-bg"></div>
+    <div style="height: 100vh" class="mr-full-width mr-content">
+        <div class="row">
+            <div class="col-xs-12">
+                <input type="text" class="k-input mr-input" placeholder="Enter MediRecords Token" data-bind="value: formData.token"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-7 col-xs-push-3 text-center">
+                <a data-role="button" class="btn mr-button mr-green mr-shadow mr-height-60" data-bind="click: next">Submit Token</a>
+            </div>
+        </div>
+    </div>
+</div>
