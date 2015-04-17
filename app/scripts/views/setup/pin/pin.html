@@ -1,4 +1,4 @@
-<div id="view-pin" class="bg-blur-container" 
+<div id="view-pin" class="setup-layout" 
      data-role="view" data-stretch="true" 
      data-model="mrapp.model.pin" 
      data-init="mrapp.model.pin.onInit" 
@@ -13,16 +13,16 @@
                     <label>Enter New Pin</label>
                 </div>
                 <div class="col-xs-3">
-                    <input type="password" id="view-pin-code-1" data-next="view-pin-code-2" class="k-input mr-input" maxlength="1" data-bind="value: formData.passCode1, events: {keyup: onKeyup, change: dataChanged}"/>
+                    <input type="number" id="view-pin-code-1" data-next="view-pin-code-2" class="k-input mr-input" maxlength="1" data-bind="value: formData.passCode1, events: {keyup: onKeyup, change: dataChanged}"/>
                 </div>
                 <div class="col-xs-3">
-                    <input type="password" id="view-pin-code-2" data-next="view-pin-code-3" class="k-input mr-input" maxlength="1" data-bind="value: formData.passCode2, events: {keyup: onKeyup, change: dataChanged}"/>
+                    <input type="number" id="view-pin-code-2" data-next="view-pin-code-3" class="k-input mr-input" maxlength="1" data-bind="value: formData.passCode2, events: {keyup: onKeyup, change: dataChanged}"/>
                 </div>
                 <div class="col-xs-3">
-                    <input type="password" id="view-pin-code-3" data-next="view-pin-code-4" class="k-input mr-input" maxlength="1" data-bind="value: formData.passCode3, events: {keyup: onKeyup, change: dataChanged}"/>
+                    <input type="number" id="view-pin-code-3" data-next="view-pin-code-4" class="k-input mr-input" maxlength="1" data-bind="value: formData.passCode3, events: {keyup: onKeyup, change: dataChanged}"/>
                 </div>
                 <div class="col-xs-3">
-                    <input type="password" id="view-pin-code-4" data-next="view-pin-code-1" class="k-input mr-input" maxlength="1" data-bind="value: formData.passCode4, events: {keyup: onKeyup, change: dataChanged}"/>
+                    <input type="number" id="view-pin-code-4" data-next="view-pin-code-1" class="k-input mr-input" maxlength="1" data-bind="value: formData.passCode4, events: {keyup: onKeyup, change: dataChanged}"/>
                 </div>
             </div>
             <div class="row">
@@ -37,16 +37,16 @@
                     <label>Confirm Pin</label>
                 </div>
                 <div class="col-xs-3">
-                    <input type="password" id="view-pin-code-confirm-1" data-next="view-pin-code-confirm-2" class="k-input mr-input" maxlength="1" data-bind="value: formDataConfirm.passCode1, events: {keyup: onKeyup, change: dataChanged}"/>
+                    <input type="number" id="view-pin-code-confirm-1" data-next="view-pin-code-confirm-2" class="k-input mr-input" maxlength="1" data-bind="value: formDataConfirm.passCode1, events: {keyup: onKeyup, change: dataChanged}"/>
                 </div>
                 <div class="col-xs-3">
-                    <input type="password" id="view-pin-code-confirm-2" data-next="view-pin-code-confirm-3" class="k-input mr-input" maxlength="1" data-bind="value: formDataConfirm.passCode2, events: {keyup: onKeyup, change: dataChanged}"/>
+                    <input type="number" id="view-pin-code-confirm-2" data-next="view-pin-code-confirm-3" class="k-input mr-input" maxlength="1" data-bind="value: formDataConfirm.passCode2, events: {keyup: onKeyup, change: dataChanged}"/>
                 </div>
                 <div class="col-xs-3">
-                    <input type="password" id="view-pin-code-confirm-3" data-next="view-pin-code-confirm-4" class="k-input mr-input" maxlength="1" data-bind="value: formDataConfirm.passCode3, events: {keyup: onKeyup, change: dataChanged}"/>
+                    <input type="number" id="view-pin-code-confirm-3" data-next="view-pin-code-confirm-4" class="k-input mr-input" maxlength="1" data-bind="value: formDataConfirm.passCode3, events: {keyup: onKeyup, change: dataChanged}"/>
                 </div>
                 <div class="col-xs-3">
-                    <input type="password" id="view-pin-code-confirm-4" data-next="view-pin-code-confirm-1" class="k-input mr-input" maxlength="1" data-bind="value: formDataConfirm.passCode4, events: {keyup: onKeyup, change: dataChanged}"/>
+                    <input type="number" id="view-pin-code-confirm-4" data-next="view-pin-code-confirm-1" class="k-input mr-input" maxlength="1" data-bind="value: formDataConfirm.passCode4, events: {keyup: onKeyup, change: dataChanged}"/>
                 </div>
             </div>
             <div class="row">

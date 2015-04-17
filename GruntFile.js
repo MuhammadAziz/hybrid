@@ -30,7 +30,7 @@ module.exports = function(grunt) {
                         "css/**/*.css",
                         'scripts/**/*.js',
                         '**/*.html',
-                        '**/*.jpg'
+                        '**/*.{jpg,svg}'
                     ],
                     dest: debug
                 }]
@@ -141,7 +141,7 @@ module.exports = function(grunt) {
                         "css/**/*",
                         "bower_components/**/*",
                         "scripts/**/*",
-                        "**/*.{jpg,png}",
+                        "**/*.{jpg,png,svg}",
                         "scss/**/*",
                         "**/*.html",
                         '!**/*.apk',
@@ -162,7 +162,7 @@ module.exports = function(grunt) {
                         "css/**/*",
                         "bower_components/**/*",
                         "scripts/**/*",
-                        "**/*.{jpg,png}",
+                        "**/*.{jpg,png,svg}",
                         "scss/**/*",
                         "**/*.html",
                         '!**/*.apk',

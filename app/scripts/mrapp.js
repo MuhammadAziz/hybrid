@@ -26,16 +26,30 @@ define([
     var os = kendo.support.mobileOS,
         statusBarStyle = os.ios && os.flatVersion >= 700 ? 'black-translucent' : 'black';
 
+    var errorHandler = function (e) {
+        e.preventDefault();
+        var message = e.message + "' from " + e.filename + ":" + e.lineno;
+
+        navigator.notification.alert(message, function () {
+        }, title, 'OK');
+
+        return true;
+    };
+
     mrapp.init = function () {
         fixViewResize();
         // intialize the application
         mrapp.mobile = new kendo.mobile.Application(document.body, {
                                                      transition: 'slide',
                                                      statusBarStyle: statusBarStyle,
-                                                     skin: 'flat'
+                                                     skin: 'flat',
+                                                     browserHistory: false
                                                  });
-		// mrapp.mobile.navigate("#view-profile");
-		listeners.run();
+		mrapp.mobile.navigate("#view-profile");
+		listeners.run({
+            fixViewResize: fixViewResize,
+            errorHandler: errorHandler
+        });
     };
 
     return mrapp;

@@ -30,9 +30,9 @@ define([
 				},
 				validate: function (passcode, guid) {
 					guid = guid || PHRASE; //TODO: change pass phrase to patient guid
-					var current = privateValue.getCurrentPasscode(guid), result = passcode === current;
+					var current = privateValue.getCurrentPasscode(guid), result = current === passcode + "" ; //convert to string
 					result && privateValue.clearTimestamp();
-					return result; //convert to string
+					return result; 
 				},
 				updatePasscodeTimeout: function () {
 					if (this.isPasscodeDisabled() && !settings.isSetupComplete()) {
@@ -55,7 +55,7 @@ define([
 				isInvalidPasscode: function () {
 					var timestamp, now = new Date(), isInvalid = true;
 					timestamp = this.getFromStorage(passcodeConst.TIMESTAMP_KEY);
-					isInvalid = timestamp === false ? timestamp : timestamp === null ? isInvalid : new Date(timestamp) < now;
+					isInvalid = timestamp === false ? timestamp : timestamp === null ? isInvalid : (new Date(timestamp)) > now;
 					return isInvalid;
 				},
 				isPasscodeEnabled: function () {

@@ -9,14 +9,14 @@
     -moz-border-radius: 100%;
     border-radius: 100%;
     color: white;
-	min-height: 5vh;
-	min-width: 5vh;
+	min-height: 25px;
+	min-width: 25px;
     &:before{
     	content:'?';
 		position: absolute;
 		font-size: 15pt;
 		font-weight: bold;
-		left: 1.2vh;
-		bottom: 0.1vh;
+		left: 4pt;
+		bottom: 0;
     }
 }

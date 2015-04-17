@@ -3,19 +3,46 @@
 }
 
 @import "shadows";
+@import "fonts";
 
 #body {
     @import "colors";
+
+    background-color: $color-mrapp-grey;
+    font-size: 13pt;
+    font-family: $font-opensans, $font-sanserif;
+
+    
     @import "override";
     @import "buttons";
     @import "widgets";
     @import "extendable";
     @import "icons";
+
+
     &.blur{
         background-image: url('../img/bg-splash.jpg');
         -moz-background-size: cover;
         -webkit-background-size: cover;
         background-size: cover;
     }
+
+    .swipe-page{
+        padding: 2vh;
+        .icon{
+            padding-top: 3vh;
+            padding-bottom: 3vh;
+        }
+        .content{
+            padding-top: 3vh;
+            padding-bottom: 3vh;
+        }
+        label {
+            font-weight: 300;
+            color: $color-mrapp-white;
+            font-size: 12pt;
+        }
+    }
+
     @import "responsive";
 }
